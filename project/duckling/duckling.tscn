@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://duckling/duckling.gd" type="Script" id=1]
 [ext_resource path="res://models/Material.material" type="Material" id=2]
+[ext_resource path="res://player/DuckAnimations.gd" type="Script" id=3]
 
 [sub_resource type="CapsuleShape" id=11]
 radius = 0.5
@@ -688,6 +689,7 @@ tracks/11/keys = PoolRealArray( 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0.458333, 1,
 [sub_resource type="Animation" id=10]
 resource_name = "Swim"
 length = 1.25
+loop = true
 tracks/0/type = "transform"
 tracks/0/path = NodePath("Armature/Skeleton:Top Beak")
 tracks/0/interp = 1
@@ -868,3 +870,4 @@ anims/OpenBeak = SubResource( 7 )
 anims/RightTurn = SubResource( 8 )
 anims/ShootBeak = SubResource( 9 )
 anims/Swim = SubResource( 10 )
+script = ExtResource( 3 )
