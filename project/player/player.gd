@@ -25,6 +25,7 @@ func _physics_process(delta):
 	add_central_force(global_transform.basis * Vector3(0.0, 0.0, -60.0))
 	
 	var v = 0.0
+	
 	if Input.is_action_pressed("left"):
 		v += 3.0
 		
