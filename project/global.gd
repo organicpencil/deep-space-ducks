@@ -7,3 +7,5 @@ signal win
 signal lose
 
 enum{DUCKY_FUNHAT, DUCKY_BLACKHAT, DUCKY_COWBOYHAT, DUCKY_BALD, DUCKY_NONE}
+
+var player_path
