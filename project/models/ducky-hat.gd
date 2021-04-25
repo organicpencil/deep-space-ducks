@@ -6,7 +6,7 @@ func _ready():
 	
 	var hat = null
 	if hat_array[index] != "":
-		hat = load("res://Models/hats/" + hat_array[index]).instance()
+		hat = load("res://models/hats/" + hat_array[index]).instance()
 	
 	if hat != null:
 		if (hat_array[index] == "blackhat.tscn"):
