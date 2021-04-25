@@ -182,15 +182,33 @@ margin_right = 140.0
 margin_left = 144.0
 margin_right = 176.0
 
-[node name="PlayerShield" type="ProgressBar" parent="ParallaxBackground2"]
-visible = false
+[node name="Heart6" parent="ParallaxBackground2/HeartContainer" instance=ExtResource( 9 )]
+margin_left = 180.0
+margin_right = 212.0
+
+[node name="Heart7" parent="ParallaxBackground2/HeartContainer" instance=ExtResource( 9 )]
+margin_left = 216.0
+margin_right = 248.0
+
+[node name="Heart8" parent="ParallaxBackground2/HeartContainer" instance=ExtResource( 9 )]
+margin_left = 252.0
+margin_right = 284.0
+
+[node name="Heart9" parent="ParallaxBackground2/HeartContainer" instance=ExtResource( 9 )]
+margin_left = 288.0
+margin_right = 320.0
+
+[node name="Heart10" parent="ParallaxBackground2/HeartContainer" instance=ExtResource( 9 )]
+margin_left = 324.0
+margin_right = 356.0
+
+[node name="PlayerEnergy" type="ProgressBar" parent="ParallaxBackground2"]
 margin_left = 8.0
 margin_top = 48.0
-margin_right = 182.0
+margin_right = 364.0
 margin_bottom = 62.0
 custom_styles/fg = SubResource( 1 )
 custom_styles/bg = SubResource( 2 )
-value = 100.0
 percent_visible = false
 __meta__ = {
 "_edit_use_anchors_": false

@@ -10,6 +10,7 @@ func _ready():
 	Global.connect("win", $ParallaxBackground2/Win, "show")
 	Global.connect("lose", $ParallaxBackground2/Lose, "show")
 	Global.connect("player_health_changed", self, "_player_health_changed")
+	Global.connect("player_energy_changed", self, "_player_energy_changed")
 	
 func _player_health_changed(health, max_health):
 	var cont = $ParallaxBackground2/HeartContainer
@@ -23,6 +24,9 @@ func _player_health_changed(health, max_health):
 			h.modulate = Color(0, 0, 0, 1)
 			
 		cont.add_child(h)
+		
+func _player_energy_changed(energy, max_energy):
+	$ParallaxBackground2/PlayerEnergy.value = (energy / max_energy) * 100.0
 	
 func spawn_big_enemy():
 	var v = Vector3(0, 0, 100)
