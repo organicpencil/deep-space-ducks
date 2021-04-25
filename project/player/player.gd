@@ -29,20 +29,7 @@ func _unhandled_input(event):
 		
 	if event.is_action_pressed("deploy"):
 		if behind:
-			var baddies = get_tree().get_nodes_in_group("baddies")
-			var pos = get_viewport().get_camera().project_position(get_viewport().get_mouse_position(), 50.0)
-			
-			var nearest = null
-			var neardist = 0.0
-			
-			for b in baddies:
-				var dist = b.global_transform.origin.distance_to(pos)
-				if nearest == null or dist < neardist:
-					nearest = b
-					neardist = dist
-			
-			var duck = behind
-			duck.set_target(nearest)
+			behind.find_target()
 
 func _physics_process(delta):
 	add_central_force(global_transform.basis * Vector3(0.0, 0.0, -60.0))

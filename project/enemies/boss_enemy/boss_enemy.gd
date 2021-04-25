@@ -1,4 +1,4 @@
-extends RigidBody
+extends StaticBody
 
 var follow_target_nodepath
 var health = 1
@@ -28,9 +28,6 @@ func spawn():
 
 func _physics_process(delta):
 	var follow_target = get_node(follow_target_nodepath)
-	if !follow_target:
-		push_warning("No follow target for boss enemy")
-		return
 
 	var v = (global_transform.origin - follow_target.global_transform.origin).normalized()
 	v *= 20.0

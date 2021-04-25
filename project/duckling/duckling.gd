@@ -14,6 +14,24 @@ func _shoot():
 	get_parent().add_child(laser)
 	laser.global_transform.origin = global_transform.origin
 	laser.global_transform.basis = global_transform.basis
+	
+func find_target():
+	if !is_inside_tree():
+		return
+		
+	var baddies = get_tree().get_nodes_in_group("baddies")
+	var pos = get_viewport().get_camera().project_position(get_viewport().get_mouse_position(), 50.0)
+	
+	var nearest = null
+	var neardist = 0.0
+	
+	for b in baddies:
+		var dist = b.global_transform.origin.distance_to(pos)
+		if nearest == null or dist < neardist:
+			nearest = b
+			neardist = dist
+	
+	set_target(nearest)
 
 func set_target(target):
 	if behind:
@@ -37,13 +55,13 @@ func set_target(target):
 		return_to_master()
 	else:
 		$ShootTimer.start()
-		
+	
 func _clear_target():
 	if _target:
 		_target.disconnect("tree_exiting", self, "_clear_target")
 		_target = null
 		$ShootTimer.stop()
-		return_to_master()
+		find_target()
 		
 func return_to_master():
 	if ahead:
@@ -70,9 +88,14 @@ func _physics_process(delta):
 	var follow_target
 	if _target:
 		follow_target = _target
-	else:
+	elif ahead:
 		follow_target = ahead
+	else:
+		return_to_master()
 	
+	if follow_target == null or !is_instance_valid(follow_target):
+		return
+		
 	look_at(follow_target.transform.origin, Vector3(0, 1, 0))
 	var v = follow_target.transform.basis * Vector3(0, 0, 1)
 	
