@@ -10,13 +10,13 @@
 [ext_resource path="res://hud/volume_bar.tscn" type="PackedScene" id=8]
 [ext_resource path="res://hud/heart.tscn" type="PackedScene" id=9]
 
-[sub_resource type="StyleBoxFlat" id=2]
+[sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.317647, 0.858824, 1, 1 )
 
-[sub_resource type="StyleBoxFlat" id=3]
+[sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.105882, 0.105882, 0.105882, 1 )
 
-[sub_resource type="Environment" id=1]
+[sub_resource type="Environment" id=3]
 background_mode = 4
 ambient_light_color = Color( 1, 1, 1, 1 )
 ambient_light_energy = 0.2
@@ -188,8 +188,8 @@ margin_left = 8.0
 margin_top = 48.0
 margin_right = 182.0
 margin_bottom = 62.0
-custom_styles/fg = SubResource( 2 )
-custom_styles/bg = SubResource( 3 )
+custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
 value = 100.0
 percent_visible = false
 __meta__ = {
@@ -197,7 +197,7 @@ __meta__ = {
 }
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 1 )
+environment = SubResource( 3 )
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 5.96046e-08, 1, 0, -1, 5.96046e-08, 0, 50, 0 )
