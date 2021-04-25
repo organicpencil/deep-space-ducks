@@ -66,6 +66,8 @@ func _unhandled_input(event):
 
 func _physics_process(delta):
 	if health == 0:
+		angular_velocity = Vector3()
+		$"big-beak/AnimationPlayer".stop()
 		return
 		
 	if Input.is_action_pressed("shoot"):
