@@ -34,6 +34,7 @@ func take_damage(amount : int):
 		Global.emit_signal("player_health_changed", health, max_health)
 		if health == 0:
 			emit_signal("dead")
+			Global.emit_signal("lose")
 			#queue_free()
 
 func _unhandled_input(event):

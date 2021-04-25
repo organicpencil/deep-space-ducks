@@ -8,7 +8,9 @@ func _ready():
 	connect("body_entered", self, "_body_entered")
 
 func _body_entered(node):
-	node.take_damage(1)
+	if node.has_method("take_damage"):
+		node.take_damage(1)
+		
 	queue_free()
 
 func _physics_process(delta):

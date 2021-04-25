@@ -7,6 +7,9 @@ func _ready():
 	var enemy = spawn_big_enemy()
 	enemy.connect("dead", self, "_wave_2")
 	
+	Global.connect("win", $ParallaxBackground2/Win, "show")
+	Global.connect("lose", $ParallaxBackground2/Lose, "show")
+	
 func spawn_big_enemy():
 	var v = Vector3(0, 0, 100)
 	var b = Basis(Vector3(0, 1, 0), randf() * 6.0)
@@ -58,3 +61,4 @@ func _wave_5():
 	enemies_remaining -= 1
 	if enemies_remaining == 0:
 		print("You win!")
+		Global.emit_signal("win")
