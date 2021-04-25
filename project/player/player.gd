@@ -8,6 +8,11 @@ var max_health = 5
 
 signal dead
 
+func _ready():
+	yield(get_tree(), "idle_frame")
+	yield(get_tree(), "idle_frame")
+	Global.emit_signal("player_health_changed", health, max_health)
+
 func set_behind(ducky):
 	behind = ducky
 	if behind:

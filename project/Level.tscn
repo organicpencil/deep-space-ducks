@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Camera.gd" type="Script" id=1]
 [ext_resource path="res://background/bkgd_7.png" type="Texture" id=2]
@@ -8,6 +8,13 @@
 [ext_resource path="res://duckling/nothing.png" type="Texture" id=6]
 [ext_resource path="res://ducky_preview.gd" type="Script" id=7]
 [ext_resource path="res://hud/volume_bar.tscn" type="PackedScene" id=8]
+[ext_resource path="res://hud/heart.tscn" type="PackedScene" id=9]
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.317647, 0.858824, 1, 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.105882, 0.105882, 0.105882, 1 )
 
 [sub_resource type="Environment" id=1]
 background_mode = 4
@@ -144,6 +151,47 @@ margin_bottom = 7.0
 rect_scale = Vector2( 5, 5 )
 text = "LOSE"
 align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HeartContainer" type="HBoxContainer" parent="ParallaxBackground2"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Heart" parent="ParallaxBackground2/HeartContainer" instance=ExtResource( 9 )]
+
+[node name="Heart2" parent="ParallaxBackground2/HeartContainer" instance=ExtResource( 9 )]
+margin_left = 36.0
+margin_right = 68.0
+
+[node name="Heart3" parent="ParallaxBackground2/HeartContainer" instance=ExtResource( 9 )]
+margin_left = 72.0
+margin_right = 104.0
+
+[node name="Heart4" parent="ParallaxBackground2/HeartContainer" instance=ExtResource( 9 )]
+margin_left = 108.0
+margin_right = 140.0
+
+[node name="Heart5" parent="ParallaxBackground2/HeartContainer" instance=ExtResource( 9 )]
+margin_left = 144.0
+margin_right = 176.0
+
+[node name="PlayerShield" type="ProgressBar" parent="ParallaxBackground2"]
+visible = false
+margin_left = 8.0
+margin_top = 48.0
+margin_right = 182.0
+margin_bottom = 62.0
+custom_styles/fg = SubResource( 2 )
+custom_styles/bg = SubResource( 3 )
+value = 100.0
+percent_visible = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
