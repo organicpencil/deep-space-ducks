@@ -865,3 +865,10 @@ anims/OpenBeak = SubResource( 9 )
 anims/RightTurn = SubResource( 10 )
 anims/ShootBeak = SubResource( 11 )
 anims/Swim = SubResource( 12 )
+
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 0.15
+one_shot = true
+__meta__ = {
+"_editor_description_": ""
+}
