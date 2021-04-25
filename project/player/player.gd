@@ -37,7 +37,7 @@ func spawn_duckling():
 
 func take_damage(amount : int):
 	if health > 0:
-		while energy >= 1.0:
+		while amount > 0 and energy >= 1.0:
 			energy -= 1.0
 			amount -= 1
 			
