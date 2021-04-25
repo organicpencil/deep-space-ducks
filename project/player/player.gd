@@ -1,7 +1,7 @@
 extends RigidBody
 
 var behind
-var follow_offset = 1.0
+var follow_offset = 4.0
 
 func _unhandled_input(event):
 	if event.is_action_pressed("test"):
