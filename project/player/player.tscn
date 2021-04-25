@@ -3,10 +3,9 @@
 [ext_resource path="res://player/player.gd" type="Script" id=1]
 [ext_resource path="res://models/DuckSkin.material" type="Material" id=2]
 [ext_resource path="res://player/DuckAnimations.gd" type="Script" id=3]
+[ext_resource path="res://models/helmet/helmet-shield.tscn" type="PackedScene" id=4]
 
-[sub_resource type="CapsuleShape" id=11]
-
-[sub_resource type="ArrayMesh" id=12]
+[sub_resource type="ArrayMesh" id=1]
 resource_name = "Duck"
 surfaces/0 = {
 "aabb": AABB( -1.44534, -1.60288, -2.52848, 2.89068, 2.89344, 4.41595 ),
@@ -21,7 +20,7 @@ surfaces/0 = {
 "vertex_count": 608
 }
 
-[sub_resource type="Skin" id=13]
+[sub_resource type="Skin" id=2]
 resource_name = "Skin"
 bind_count = 12
 bind/0/name = "Body"
@@ -61,14 +60,14 @@ bind/11/name = "Tail"
 bind/11/bone = -1
 bind/11/pose = Transform( 1, -1.32251e-07, -1.98376e-07, 0, 0.83205, -0.5547, 2.38419e-07, 0.5547, 0.83205, -3.20028e-07, -0.248533, 1.34229 )
 
-[sub_resource type="SpatialMaterial" id=14]
+[sub_resource type="SpatialMaterial" id=3]
 flags_unshaded = true
 params_cull_mode = 1
 params_grow = true
 params_grow_amount = 0.2
 albedo_color = Color( 0, 0, 0, 1 )
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=4]
 resource_name = "Base"
 length = 1.25
 tracks/0/type = "transform"
@@ -156,7 +155,7 @@ tracks/11/imported = true
 tracks/11/enabled = true
 tracks/11/keys = PoolRealArray( 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1.25, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1 )
 
-[sub_resource type="Animation" id=16]
+[sub_resource type="Animation" id=5]
 resource_name = "CloseBeak"
 length = 0.0416667
 tracks/0/type = "transform"
@@ -244,7 +243,7 @@ tracks/11/imported = true
 tracks/11/enabled = true
 tracks/11/keys = PoolRealArray( 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0.0416667, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1 )
 
-[sub_resource type="Animation" id=17]
+[sub_resource type="Animation" id=6]
 resource_name = "Jump"
 length = 1.25
 tracks/0/type = "transform"
@@ -332,7 +331,7 @@ tracks/11/imported = true
 tracks/11/enabled = true
 tracks/11/keys = PoolRealArray( 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0.0666667, 1, -3.98448e-09, 0.00153771, 0.0167121, -0.00868072, -7.16684e-15, 7.04348e-15, 0.999962, 1, 1, 1, 0.133333, 1, -3.36608e-08, 0.0189358, 0.141184, -0.0640959, -2.8591e-14, 1.72369e-15, 0.997944, 1, 1, 1, 0.2, 1, -9.97774e-08, 0.0752273, 0.418497, -0.15919, 0, 0, 0.987248, 1, 1, 1, 0.266667, 1, -2.04108e-07, 0.194178, 0.856091, -0.256555, 1.69158e-09, -8.08607e-09, 0.96653, 1, 1, 1, 0.333333, 1, -3.4349e-07, 0.388289, 1.4407, -0.329033, 4.18379e-09, -1.99991e-08, 0.944318, 1, 1, 1, 0.4, 1, -4.9868e-07, 0.66351, 2.09161, -0.393413, 1.66731e-09, -6.6889e-08, 0.919362, 1, 1, 1, 0.466667, 1, -6.34171e-07, 0.983512, 2.65991, -0.49915, -8.2e-15, -1.37182e-07, 0.866515, 1, 1, 1, 0.533333, 1, -7.38712e-07, 1.32509, 3.09838, -0.66094, 2.84051e-14, -1.88512e-07, 0.750439, 1, 1, 1, 0.6, 1, -8.1526e-07, 1.65639, 3.41945, -0.838798, 1.30508e-14, -2.31076e-07, 0.544443, 1, 1, 1, 0.666667, 1, -8.6893e-07, 1.9523, 3.64456, 0.962402, 3.69151e-15, 2.51118e-07, -0.271627, 1, 1, 1, 0.733333, 1, -8.99779e-07, 2.17307, 3.77395, 0.999835, -4.44162e-15, 2.47854e-07, -0.0181431, 1, 1, 1, 0.8, 1, -9.14387e-07, 2.3004, 3.83522, 0.985933, -7.2068e-15, 2.36492e-07, 0.167138, 1, 1, 1, 0.866667, 1, -9.05819e-07, 2.31644, 3.79928, 0.96101, -4.06654e-14, 2.32543e-07, 0.276512, 1, 1, 1, 0.933333, 1, -8.42612e-07, 2.2611, 3.53417, 0.933488, -1.90292e-14, 2.58045e-07, 0.358609, 1, 1, 1, 1, 1, -7.33033e-07, 2.11189, 3.07456, 0.865044, 0, 2.06243e-07, 0.501696, 1, 1, 1, 1.06667, 1, -5.68357e-07, 1.75505, 2.38386, 0.61832, -4.06837e-14, 1.47419e-07, 0.785926, 1, 1, 1, 1.13333, 1, -3.37873e-07, 1.12166, 1.41714, 0.350322, 2.37068e-15, -2.39587e-08, 0.936629, 1, 1, 1, 1.2, 1, -2.30512e-07, 0.573752, 0.754663, 0.119023, 1.5878e-14, 4.51726e-08, 0.992892, 1, 1, 1, 1.25, 1, -1.54651e-07, 0.436368, 0.648655, 0, 0, 0, 1, 1, 1, 1 )
 
-[sub_resource type="Animation" id=18]
+[sub_resource type="Animation" id=7]
 resource_name = "LeftTurn"
 length = 1.25
 tracks/0/type = "transform"
@@ -420,7 +419,7 @@ tracks/11/imported = true
 tracks/11/enabled = true
 tracks/11/keys = PoolRealArray( 0, 1, 0, 0, 0, 6.7218e-08, -0.113513, -0.0756752, 0.99065, 1, 1, 1, 0.0666667, 1, 0, 0, 0, 0.0032, -0.113268, -0.0760415, 0.990645, 1, 1, 1, 0.133333, 1, 0, 0, 0, 0.0243807, -0.111616, -0.0784459, 0.99035, 1, 1, 1, 0.2, 1, 0, 0, 0, 0.0637271, -0.10841, -0.0828205, 0.988599, 1, 1, 1, 0.4, 1, 0, 0, 0, 0.200749, -0.0958225, -0.0971077, 0.970097, 1, 1, 1, 0.466667, 1, 0, 0, 0, 0.224688, -0.0933908, -0.0994487, 0.964833, 1, 1, 1, 0.533333, 1, 0, 0, 0, 0.227253, -0.093126, -0.0996966, 0.964233, 1, 1, 1, 0.6, 1, 0, 0, 0, 0.217631, -0.094115, -0.0987635, 0.96645, 1, 1, 1, 0.666667, 1, 0, 0, 0, 0.200561, -0.0958414, -0.0970891, 0.970136, 1, 1, 1, 1.13333, 1, 0, 0, 0, 0.0151573, -0.112342, -0.0774031, 0.990534, 1, 1, 1, 1.2, 1, 0, 0, 0, 0.00320372, -0.113267, -0.0760419, 0.990645, 1, 1, 1, 1.25, 1, 0, 0, 0, 6.7218e-08, -0.113513, -0.0756752, 0.99065, 1, 1, 1 )
 
-[sub_resource type="Animation" id=19]
+[sub_resource type="Animation" id=8]
 resource_name = "OpenBeak"
 length = 0.0416667
 tracks/0/type = "transform"
@@ -508,7 +507,7 @@ tracks/11/imported = true
 tracks/11/enabled = true
 tracks/11/keys = PoolRealArray( 0, 1, 0, 0, 0, 6.7218e-08, -0.113513, -0.0756752, 0.99065, 1, 1, 1, 0.0416667, 1, 0, 0, 0, 6.7218e-08, -0.113513, -0.0756752, 0.99065, 1, 1, 1 )
 
-[sub_resource type="Animation" id=20]
+[sub_resource type="Animation" id=9]
 resource_name = "RightTurn"
 length = 1.25
 tracks/0/type = "transform"
@@ -596,7 +595,7 @@ tracks/11/imported = true
 tracks/11/enabled = true
 tracks/11/keys = PoolRealArray( 0, 1, 0, 0, 0, -9.35072e-09, 0.0744399, 0.0496266, 0.99599, 1, 1, 1, 0.0666667, 1, 0, 0, 0, 0.00299897, 0.0753004, 0.0487581, 0.995964, 1, 1, 1, 0.133333, 1, 0, 0, 0, 0.02285, 0.0809768, 0.0429963, 0.995526, 1, 1, 1, 0.2, 1, 0, 0, 0, 0.0597268, 0.0914308, 0.032232, 0.993496, 1, 1, 1, 0.4, 1, 0, 0, 0, 0.188145, 0.126898, -0.00587793, 0.973891, 1, 1, 1, 0.466667, 1, 0, 0, 0, 0.210578, 0.132941, -0.0126375, 0.968413, 1, 1, 1, 0.533333, 1, 0, 0, 0, 0.212981, 0.133585, -0.0133635, 0.967789, 1, 1, 1, 0.6, 1, 0, 0, 0, 0.203965, 0.131164, -0.0106416, 0.970093, 1, 1, 1, 0.666667, 1, 0, 0, 0, 0.187968, 0.126851, -0.00582476, 0.973932, 1, 1, 1, 1.13333, 1, 0, 0, 0, 0.0142055, 0.0785092, 0.0455082, 0.995773, 1, 1, 1, 1.2, 1, 0, 0, 0, 0.00300259, 0.0753015, 0.0487571, 0.995964, 1, 1, 1, 1.25, 1, 0, 0, 0, -9.35072e-09, 0.0744399, 0.0496266, 0.99599, 1, 1, 1 )
 
-[sub_resource type="Animation" id=21]
+[sub_resource type="Animation" id=10]
 resource_name = "ShootBeak"
 length = 0.458333
 tracks/0/type = "transform"
@@ -684,7 +683,7 @@ tracks/11/imported = true
 tracks/11/enabled = true
 tracks/11/keys = PoolRealArray( 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0.458333, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1 )
 
-[sub_resource type="Animation" id=22]
+[sub_resource type="Animation" id=11]
 resource_name = "Swim"
 length = 1.25
 loop = true
@@ -782,7 +781,6 @@ linear_damp = 0.95
 script = ExtResource( 1 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-shape = SubResource( 11 )
 
 [node name="big-beak" type="Spatial" parent="."]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )
@@ -853,22 +851,25 @@ bones/11/enabled = true
 bones/11/bound_children = [  ]
 
 [node name="Duck" type="MeshInstance" parent="big-beak/Armature/Skeleton"]
-mesh = SubResource( 12 )
-skin = SubResource( 13 )
+mesh = SubResource( 1 )
+skin = SubResource( 2 )
 material/0 = null
 
 [node name="Duck2" type="MeshInstance" parent="big-beak/Armature/Skeleton"]
-mesh = SubResource( 12 )
-skin = SubResource( 13 )
-material/0 = SubResource( 14 )
+mesh = SubResource( 1 )
+skin = SubResource( 2 )
+material/0 = SubResource( 3 )
+
+[node name="helmet-shield" parent="big-beak/Armature/Skeleton/Duck2" instance=ExtResource( 4 )]
+transform = Transform( 1.78576e-09, 0, -0.9, 0, 0.9, 0, 0.9, 0, 1.78576e-09, -8.83109e-08, 1.19187, 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="big-beak"]
-anims/Base = SubResource( 15 )
-anims/CloseBeak = SubResource( 16 )
-anims/Jump = SubResource( 17 )
-anims/LeftTurn = SubResource( 18 )
-anims/OpenBeak = SubResource( 19 )
-anims/RightTurn = SubResource( 20 )
-anims/ShootBeak = SubResource( 21 )
-anims/Swim = SubResource( 22 )
+anims/Base = SubResource( 4 )
+anims/CloseBeak = SubResource( 5 )
+anims/Jump = SubResource( 6 )
+anims/LeftTurn = SubResource( 7 )
+anims/OpenBeak = SubResource( 8 )
+anims/RightTurn = SubResource( 9 )
+anims/ShootBeak = SubResource( 10 )
+anims/Swim = SubResource( 11 )
 script = ExtResource( 3 )
