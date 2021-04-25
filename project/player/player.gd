@@ -39,6 +39,14 @@ func _unhandled_input(event):
 		laser.global_transform.basis = global_transform.basis
 
 func _physics_process(delta):
+	if Input.is_action_pressed("shoot"):
+		if $ShootTimer.is_stopped():
+			$ShootTimer.start()
+			var laser = preload("res://weapons/DuckLaser.tscn").instance()
+			get_parent().add_child(laser)
+			laser.global_transform.origin = global_transform.origin
+			laser.global_transform.basis = global_transform.basis
+	
 	var boost = 1.0
 	if Input.is_action_pressed("boost"):
 		boost = 3.0
