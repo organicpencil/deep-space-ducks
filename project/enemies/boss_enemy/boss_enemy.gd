@@ -18,6 +18,9 @@ func take_damage(amount : int):
 		health = int(max(health - amount, 0))
 		if health == 0:
 			emit_signal("dead")
+			var snack = preload("res://snacks/cube_snack.tscn").instance()
+			get_parent().add_child(snack)
+			snack.transform.origin = transform.origin
 			queue_free()
 	
 func spawn():
