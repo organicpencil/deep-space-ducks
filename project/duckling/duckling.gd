@@ -5,6 +5,10 @@ var behind
 var follow_offset = 2.0
 var _target_ref
 var master_duck
+var duck_type = Global.DUCKY_BALD
+
+func _init():
+	duck_type = randi() % 4
 
 func _ready():
 	$ShootTimer.connect("timeout", self, "_shoot")

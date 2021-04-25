@@ -1,7 +1,14 @@
 extends RigidBody
 
-var behind
+var behind setget set_behind
 var follow_offset = 4.0
+
+func set_behind(ducky):
+	behind = ducky
+	if behind:
+		Global.emit_signal("ducky_changed", behind.duck_type)
+	else:
+		Global.emit_signal("ducky_changed", Global.DUCKY_NONE)
 
 func _unhandled_input(event):
 	if event.is_action_pressed("test"):
@@ -12,7 +19,7 @@ func _unhandled_input(event):
 			behind.ahead = duck
 			duck.behind = behind
 			
-		behind = duck
+		set_behind(duck)
 		
 		get_parent().add_child(duck)
 		duck.global_transform.origin = global_transform.origin

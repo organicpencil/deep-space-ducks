@@ -2,7 +2,7 @@ extends Spatial
 
 func _ready():
 	var hat_array = ["funhat.tscn", "blackhat.tscn", "cowboyhat.tscn", ""]
-	var index = randi() % 4
+	var index = find_parent("ducky").get_parent().duck_type
 	
 	var hat = null
 	if hat_array[index] != "":
