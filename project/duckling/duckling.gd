@@ -71,6 +71,7 @@ func return_to_master():
 	if ahead:
 		return
 		
+	_target_ref = null
 	var duck = _find_last_duck(master_duck)
 	duck.behind = self
 	ahead = duck
