@@ -2,7 +2,7 @@ extends StaticBody
 
 var ahead
 var behind
-var follow_offset = 0.5
+var follow_offset = 2.0
 var _target_ref
 var master_duck
 
@@ -103,6 +103,6 @@ func _physics_process(delta):
 	var v = follow_target.transform.basis * Vector3(0, 0, 1)
 	
 	if ahead:
-		transform.origin = transform.origin.linear_interpolate(follow_target.transform.origin + (v * follow_target.follow_offset), 0.15)
+		transform.origin = transform.origin.linear_interpolate(follow_target.transform.origin + (v * follow_target.follow_offset), 0.2)
 	else:
 		translate(global_transform.basis * Vector3(0.0, 0.0, -40.0) * delta)
