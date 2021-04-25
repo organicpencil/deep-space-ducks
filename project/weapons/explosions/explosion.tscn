@@ -1,0 +1,53 @@
+[gd_scene load_steps=3 format=2]
+
+[sub_resource type="SpatialMaterial" id=1]
+flags_transparent = true
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+params_diffuse_mode = 4
+params_blend_mode = 1
+params_line_width = 0.1
+params_point_size = 0.1
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="PlaneMesh" id=2]
+material = SubResource( 1 )
+size = Vector2( 8, 8 )
+
+[node name="explosion" type="Spatial"]
+
+[node name="bam" type="CPUParticles" parent="."]
+transform = Transform( -0.46904, 0, -0.883177, 0, 1, 0, 0.883177, 0, -0.46904, 0, 0, 0 )
+emitting = false
+amount = 100
+lifetime = 6.32
+one_shot = true
+speed_scale = 12.01
+explosiveness = 0.56
+randomness = 0.71
+lifetime_randomness = 0.53
+local_coords = false
+mesh = SubResource( 2 )
+emission_shape = 1
+emission_sphere_radius = 6.75
+emission_colors = PoolColorArray( 1, 0, 0, 1, 0.470588, 0.470588, 0.470588, 1 )
+direction = Vector3( 0, 10, 0 )
+spread = 180.0
+gravity = Vector3( 0, -12.779, 0 )
+initial_velocity_random = 0.4
+angular_velocity = 108.39
+angular_velocity_random = 0.76
+linear_accel = 17.2
+linear_accel_random = 1.0
+radial_accel = -6.45
+radial_accel_random = 0.76
+tangential_accel = 8.0
+tangential_accel_random = 0.45
+angle = -527.4
+angle_random = 0.71
+scale_amount = 1.5
+color = Color( 0.917647, 0.356863, 0.0823529, 1 )
+hue_variation = 1.0
