@@ -7,7 +7,7 @@ var max_health = 1
 signal dead
 
 func _ready():
-	$ShootTimer.connect("timeout", self, "shoot")
+	$ShootTimer.connect("timeout", self, "_shoot")
 	$ShootTimer.start()
 	
 func take_damage(amount : int):
@@ -17,10 +17,13 @@ func take_damage(amount : int):
 			emit_signal("dead")
 			queue_free()
 
-func shoot():
+func _shoot():
 	if $VisibilityNotifier.is_on_screen():
-		# TODO - Create bullet
-		pass
+			var laser = preload("res://weapons/EnemyLaser.tscn").instance()
+			get_parent().add_child(laser)
+			laser.global_transform.origin = global_transform.origin
+			laser.global_transform.basis = global_transform.basis
+			laser.scale.x *= 0.5
 		
 	$ShootTimer.wait_time = rand_range(0.5, 2.0)
 	$ShootTimer.start()

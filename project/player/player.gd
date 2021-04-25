@@ -3,6 +3,11 @@ extends RigidBody
 var behind setget set_behind
 var follow_offset = 4.0
 
+var health = 5
+var max_health = 5
+
+signal dead
+
 func set_behind(ducky):
 	behind = ducky
 	if behind:
@@ -23,7 +28,18 @@ func spawn_duckling():
 	get_parent().add_child(duck)
 	duck.global_transform.origin = global_transform.origin
 
+func take_damage(amount : int):
+	if health > 0:
+		health = int(max(health - amount, 0))
+		Global.emit_signal("player_health_changed", health, max_health)
+		if health == 0:
+			emit_signal("dead")
+			#queue_free()
+
 func _unhandled_input(event):
+	if health == 0:
+		return
+		
 	if event.is_action_pressed("test"):
 		spawn_duckling()
 		
@@ -49,6 +65,9 @@ func _unhandled_input(event):
 		laser.global_transform.basis = global_transform.basis
 
 func _physics_process(delta):
+	if health == 0:
+		return
+		
 	if Input.is_action_pressed("shoot"):
 		if $ShootTimer.is_stopped():
 			$ShootTimer.start()

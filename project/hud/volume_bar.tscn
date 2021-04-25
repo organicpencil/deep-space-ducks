@@ -1,0 +1,8 @@
+[gd_scene format=2]
+
+[node name="VolumeBar" type="ColorRect"]
+margin_left = 990.0
+margin_right = 1000.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 10, 20 )
+color = Color( 0, 1, 0, 1 )
