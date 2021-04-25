@@ -2,7 +2,7 @@
 
 [ext_resource path="res://player/player.gd" type="Script" id=1]
 [ext_resource path="res://models/DuckSkin.material" type="Material" id=2]
-[ext_resource path="res://player/DuckAnimations.gd" type="Script" id=3]
+[ext_resource path="res://player/duck-animations.gd" type="Script" id=3]
 [ext_resource path="res://models/helmet/helmet-shield.tscn" type="PackedScene" id=4]
 
 [sub_resource type="ArrayMesh" id=1]
