@@ -2,6 +2,7 @@ extends Node
 
 signal ducky_changed
 signal player_health_changed
+signal player_energy_changed
 signal win
 signal lose
 

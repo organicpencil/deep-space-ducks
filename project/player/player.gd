@@ -3,8 +3,10 @@ extends RigidBody
 var behind setget set_behind
 var follow_offset = 4.0
 
-var health = 5
-var max_health = 5
+var health = 10
+var max_health = 10
+var energy = 0.0
+var max_energy = 10.0
 
 signal dead
 
@@ -35,6 +37,10 @@ func spawn_duckling():
 
 func take_damage(amount : int):
 	if health > 0:
+		while energy >= 1.0:
+			energy -= 1.0
+			amount -= 1
+			
 		health = int(max(health - amount, 0))
 		Global.emit_signal("player_health_changed", health, max_health)
 		if health == 0:
@@ -70,6 +76,14 @@ func _physics_process(delta):
 		$"big-beak/AnimationPlayer".stop()
 		return
 		
+	var energy_recharge = 0.05
+	var ducky = behind
+	while ducky:
+		energy_recharge += 0.2
+		ducky = ducky.behind
+		
+	energy = min(energy + (energy_recharge * delta), max_energy)
+	
 	if Input.is_action_pressed("shoot"):
 		if $ShootTimer.is_stopped():
 			$ShootTimer.start()
@@ -81,8 +95,9 @@ func _physics_process(delta):
 			laser.rotate_y(rand_range(deg2rad(-5), deg2rad(5)))
 	
 	var boost = 1.0
-	if Input.is_action_pressed("boost"):
+	if Input.is_action_pressed("boost") and energy >= 1.0 * delta:
 		boost = 3.0
+		energy -= 1.0 * delta
 		
 	if Input.is_action_pressed("forward") or Input.is_action_pressed("boost"):
 		add_central_force(global_transform.basis * Vector3(0.0, 0.0, -40.0) * boost)
@@ -95,9 +110,10 @@ func _physics_process(delta):
 	var v = 0.0
 	
 	if Input.is_action_pressed("left"):
-		v += 3.0
+		v += 4.0
 		
 	if Input.is_action_pressed("right"):
-		v -= 3.0
+		v -= 4.0
 		
 	angular_velocity = Vector3(0, v, 0) / boost
+	Global.emit_signal("player_energy_changed", energy, max_energy)
