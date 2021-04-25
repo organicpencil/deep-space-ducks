@@ -10,19 +10,22 @@ func set_behind(ducky):
 	else:
 		Global.emit_signal("ducky_changed", Global.DUCKY_NONE)
 
+func spawn_duckling():
+	var duck = load("res://duckling/duckling.tscn").instance()
+	duck.master_duck = self
+	duck.ahead = self
+	if behind:
+		behind.ahead = duck
+		duck.behind = behind
+		
+	set_behind(duck)
+	
+	get_parent().add_child(duck)
+	duck.global_transform.origin = global_transform.origin
+
 func _unhandled_input(event):
 	if event.is_action_pressed("test"):
-		var duck = load("res://duckling/duckling.tscn").instance()
-		duck.master_duck = self
-		duck.ahead = self
-		if behind:
-			behind.ahead = duck
-			duck.behind = behind
-			
-		set_behind(duck)
-		
-		get_parent().add_child(duck)
-		duck.global_transform.origin = global_transform.origin
+		spawn_duckling()
 		
 	if event.is_action_pressed("deploy"):
 		if behind:
