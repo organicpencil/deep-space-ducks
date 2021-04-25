@@ -23,7 +23,7 @@ func _unhandled_input(event):
 			
 	if event.is_action_pressed("deploy_all"):
 		while behind:
-			var target = behind.find_target()
+			var target = behind.find_target(true)
 			if !target:
 				break
 				

@@ -15,7 +15,7 @@ func _shoot():
 	laser.global_transform.origin = global_transform.origin
 	laser.global_transform.basis = global_transform.basis
 	
-func find_target():
+func find_target(random=false):
 	if !is_inside_tree():
 		return
 		
@@ -25,11 +25,15 @@ func find_target():
 	var nearest = null
 	var neardist = 0.0
 	
-	for b in baddies:
-		var dist = b.global_transform.origin.distance_to(pos)
-		if nearest == null or dist < neardist:
-			nearest = b
-			neardist = dist
+	if random:
+		if baddies.size() > 0:
+			nearest = baddies[randi() % baddies.size()]
+	else:
+		for b in baddies:
+			var dist = b.global_transform.origin.distance_to(pos)
+			if nearest == null or dist < neardist:
+				nearest = b
+				neardist = dist
 	
 	set_target(nearest)
 	return nearest
@@ -53,7 +57,7 @@ func set_target(target):
 		
 	_target_ref = weakref(target)
 	if target:
-		target.connect("tree_exiting", self, "find_target")
+		target.connect("tree_exiting", self, "find_target", [true])
 		$ShootTimer.start()
 	else:
 		return_to_master()
@@ -92,7 +96,7 @@ func _physics_process(delta):
 		follow_target = ahead
 	
 	if follow_target == null or !is_instance_valid(follow_target):
-		find_target()
+		find_target(true)
 		return
 		
 	look_at(follow_target.transform.origin, Vector3(0, 1, 0))
