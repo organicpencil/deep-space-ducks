@@ -5,9 +5,7 @@
 [ext_resource path="res://player/duck-animations.gd" type="Script" id=3]
 [ext_resource path="res://models/ducky-hat.gd" type="Script" id=7]
 
-[sub_resource type="CapsuleShape" id=1]
-radius = 0.5
-height = 0.5
+[sub_resource type="SphereShape" id=13]
 
 [sub_resource type="ArrayMesh" id=2]
 surfaces/0 = {
@@ -767,12 +765,12 @@ tracks/11/enabled = true
 tracks/11/keys = PoolRealArray( 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0.0666667, 1, 0, 0, 0, 0.00613458, 0, 0, 0.999981, 1, 1, 1, 0.133333, 1, 0, 0, 0, 0.0439084, -1.40412e-14, 4.17326e-15, 0.999036, 1, 1, 1, 0.266667, 1, 0, 0, 0, 0.158705, -2.10461e-14, 3.383e-15, 0.987326, 1, 1, 1, 0.333333, 1, 0, 0, 0, 0.184408, -1.98809e-14, 4.39662e-08, 0.98285, 1, 1, 1, 0.4, 1, 0, 0, 0, 0.181437, 2.25792e-15, 4.39783e-08, 0.983403, 1, 1, 1, 0.466667, 1, 0, 0, 0, 0.173874, -1.1274e-14, 4.40074e-08, 0.984768, 1, 1, 1, 0.533333, 1, 0, 0, 0, 0.162095, -9.00082e-15, 4.40475e-08, 0.986775, 1, 1, 1, 1.13333, 1, 0, 0, 0, 0.00834713, -1.59184e-14, 4.39988e-08, 0.999965, 1, 1, 1, 1.2, 1, 0, 0, 0, 0.00174615, -4.3958e-15, 4.39733e-08, 0.999999, 1, 1, 1, 1.25, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1 )
 
 [node name="Duckling" type="StaticBody"]
-collision_layer = 0
-collision_mask = 0
+collision_layer = 4
+collision_mask = 4
 script = ExtResource( 1 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-shape = SubResource( 1 )
+shape = SubResource( 13 )
 
 [node name="ducky" type="Spatial" parent="."]
 transform = Transform( -0.5, 0, -7.54979e-08, 0, 0.5, 0, 7.54979e-08, 0, -0.5, 0, 0, 0 )
@@ -795,7 +793,7 @@ bones/2/name = "Head"
 bones/2/parent = 1
 bones/2/rest = Transform( 0.999936, -0.0047261, 0.0102863, 0.00546223, 0.997335, -0.0727542, -0.00991503, 0.0728058, 0.997297, 2.88991e-11, 0.606347, -2.65203e-08 )
 bones/2/enabled = true
-bones/2/bound_children = [  ]
+bones/2/bound_children = [ NodePath("BoneAttachment") ]
 bones/3/name = "Top Beak"
 bones/3/parent = 2
 bones/3/rest = Transform( 1, -0.000473427, 0.000357838, 0.000473427, 0.272828, -0.962063, 0.000357838, 0.962062, 0.272828, -0.000271266, 0.51145, 0.551245 )
