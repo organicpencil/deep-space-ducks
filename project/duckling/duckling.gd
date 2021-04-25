@@ -104,6 +104,11 @@ func _physics_process(delta):
 	var v = follow_target.transform.basis * Vector3(0, 0, 1)
 	
 	if ahead:
-		transform.origin = transform.origin.linear_interpolate(follow_target.transform.origin + (v * follow_target.follow_offset), 0.2)
+		var new_pos = transform.origin.linear_interpolate(follow_target.transform.origin + (v * follow_target.follow_offset), 0.2)
+		var movement = new_pos - transform.origin
+		if movement.length() > 40.0 * delta:
+			movement *= ((40.0 * delta) / movement.length())
+			
+		transform.origin += movement
 	else:
 		translate(global_transform.basis * Vector3(0.0, 0.0, -40.0) * delta)
