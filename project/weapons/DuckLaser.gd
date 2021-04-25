@@ -8,8 +8,8 @@ func _ready():
 	connect("body_entered", self, "_body_entered")
 
 func _body_entered(node):
+	node.take_damage(1)
 	queue_free()
-	node.queue_free()
 
 func _physics_process(delta):
 	translate_object_local(Vector3(0, 0, -80.0) * delta)

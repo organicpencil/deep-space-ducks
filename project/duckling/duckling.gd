@@ -18,6 +18,8 @@ func _shoot():
 func set_target(target):
 	if behind:
 		behind.ahead = ahead
+		
+	if ahead:
 		ahead.behind = behind
 		
 	ahead = null
