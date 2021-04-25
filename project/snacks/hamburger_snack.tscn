@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://models/pickups/hamburger-pickup.tscn" type="PackedScene" id=1]
+[ext_resource path="res://snacks/snack.tscn" type="PackedScene" id=2]
+
+[node name="Snack" instance=ExtResource( 2 )]
+
+[node name="hamburger-pickup" parent="." index="3" instance=ExtResource( 1 )]
+transform = Transform( 2, 0, 0, 0, 1.73205, 1, 0, -1, 1.73205, 0, 0, 0 )
