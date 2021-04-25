@@ -35,8 +35,8 @@ load_path = "res://.import/spritesheet.png-f90f752cfe4b681a105850546318cef5.stex
 [node name="SmallEnemy" type="RigidBody" groups=[
 "baddies",
 ]]
-collision_layer = 2
-collision_mask = 2
+collision_layer = 25
+collision_mask = 25
 contacts_reported = 1
 contact_monitor = true
 can_sleep = false
