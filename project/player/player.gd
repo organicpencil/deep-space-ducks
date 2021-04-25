@@ -20,6 +20,14 @@ func _unhandled_input(event):
 	if event.is_action_pressed("deploy"):
 		if behind:
 			behind.find_target()
+			
+	if event.is_action_pressed("deploy_all"):
+		while behind:
+			var target = behind.find_target()
+			if !target:
+				break
+				
+			yield(get_tree().create_timer(0.1), "timeout")
 
 func _physics_process(delta):
 	add_central_force(global_transform.basis * Vector3(0.0, 0.0, -60.0))
