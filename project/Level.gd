@@ -9,6 +9,20 @@ func _ready():
 	
 	Global.connect("win", $ParallaxBackground2/Win, "show")
 	Global.connect("lose", $ParallaxBackground2/Lose, "show")
+	Global.connect("player_health_changed", self, "_player_health_changed")
+	
+func _player_health_changed(health, max_health):
+	var cont = $ParallaxBackground2/HeartContainer
+	for c in cont.get_children():
+		c.queue_free()
+		
+	var heart = preload("res://hud/heart.tscn")
+	for i in range(0, max_health):
+		var h = heart.instance()
+		if health <= i:
+			h.modulate = Color(0, 0, 0, 1)
+			
+		cont.add_child(h)
 	
 func spawn_big_enemy():
 	var v = Vector3(0, 0, 100)
