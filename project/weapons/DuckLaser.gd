@@ -12,4 +12,4 @@ func _body_entered(node):
 	node.queue_free()
 
 func _physics_process(delta):
-	translate_object_local(Vector3(0, 0, -60.0) * delta)
+	translate_object_local(Vector3(0, 0, -80.0) * delta)
