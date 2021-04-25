@@ -20,6 +20,8 @@ func _shoot():
 	laser.global_transform.basis = global_transform.basis
 	laser.scale.x *= 0.5
 	
+	laser.rotate_y(rand_range(deg2rad(-5), deg2rad(5)))
+	
 func find_target(random=false):
 	if !is_inside_tree():
 		return

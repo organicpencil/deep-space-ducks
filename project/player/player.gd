@@ -64,12 +64,6 @@ func _unhandled_input(event):
 	if event.is_action_pressed("recall"):
 		get_tree().call_group("duckies", "return_to_master")
 		
-	if event.is_action_pressed("shoot"):
-		var laser = preload("res://weapons/DuckLaser.tscn").instance()
-		get_parent().add_child(laser)
-		laser.global_transform.origin = global_transform.origin
-		laser.global_transform.basis = global_transform.basis
-
 func _physics_process(delta):
 	if health == 0:
 		angular_velocity = Vector3()
@@ -83,6 +77,8 @@ func _physics_process(delta):
 			get_parent().add_child(laser)
 			laser.global_transform.origin = global_transform.origin
 			laser.global_transform.basis = global_transform.basis
+			
+			laser.rotate_y(rand_range(deg2rad(-5), deg2rad(5)))
 	
 	var boost = 1.0
 	if Input.is_action_pressed("boost"):
