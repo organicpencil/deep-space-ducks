@@ -34,7 +34,13 @@ func _physics_process(delta):
 	if Input.is_action_pressed("boost"):
 		boost = 3.0
 		
-	add_central_force(global_transform.basis * Vector3(0.0, 0.0, -40.0) * boost)
+	if Input.is_action_pressed("forward") or Input.is_action_pressed("boost"):
+		add_central_force(global_transform.basis * Vector3(0.0, 0.0, -40.0) * boost)
+		$"big-beak/AnimationPlayer".play("Swim", 0.2)
+		$"big-beak/AnimationPlayer".playback_speed = boost * 2
+	else:
+		$"big-beak/AnimationPlayer".play("Base", 0.2)
+		$"big-beak/AnimationPlayer".playback_speed = 1.0
 
 	var v = 0.0
 	
