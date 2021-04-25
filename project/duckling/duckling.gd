@@ -32,6 +32,7 @@ func find_target():
 			neardist = dist
 	
 	set_target(nearest)
+	return nearest
 
 func set_target(target):
 	if behind:
