@@ -76,10 +76,10 @@ func _physics_process(delta):
 		$"big-beak/AnimationPlayer".stop()
 		return
 		
-	var energy_recharge = 0.05
+	var energy_recharge = 0.0
 	var ducky = behind
 	while ducky:
-		energy_recharge += 0.2
+		energy_recharge += 0.1
 		ducky = ducky.behind
 		
 	energy = min(energy + (energy_recharge * delta), max_energy)
