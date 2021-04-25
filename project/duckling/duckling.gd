@@ -3,7 +3,7 @@ extends StaticBody
 var ahead
 var behind
 var follow_offset = 0.5
-var _target
+var _target_ref
 var master_duck
 
 func _ready():
@@ -43,26 +43,20 @@ func set_target(target):
 	ahead = null
 	behind = null
 	
-	if _target:
-		_target.disconnect("tree_exiting", self, "_clear_target")
+	var _target
+	if _target_ref:
+		_target = _target_ref.get_ref()
 		
-	_target = target
 	if _target:
-		_target.connect("tree_exiting", self, "_clear_target")
+		_target.disconnect("tree_exiting", self, "find_target")
 		
-	if !_target:
-		$ShootTimer.stop()
-		return_to_master()
-	else:
+	_target_ref = weakref(target)
+	if target:
+		target.connect("tree_exiting", self, "find_target")
 		$ShootTimer.start()
+	else:
+		return_to_master()
 	
-func _clear_target():
-	if _target:
-		_target.disconnect("tree_exiting", self, "_clear_target")
-		_target = null
-		$ShootTimer.stop()
-		find_target()
-		
 func return_to_master():
 	if ahead:
 		return
@@ -71,6 +65,7 @@ func return_to_master():
 	duck.behind = self
 	ahead = duck
 	behind = null
+	$ShootTimer.stop()
 	
 func _find_last_duck(duck):
 	if duck.behind:
@@ -83,23 +78,26 @@ func _exit_tree():
 		behind.ahead = ahead
 		ahead.behind = behind
 		behind = null
+		ahead = null
 
 func _physics_process(delta):
 	var follow_target
-	if _target:
-		follow_target = _target
-	elif ahead:
+	if ahead:
 		follow_target = ahead
+	elif _target_ref and _target_ref.get_ref():
+		follow_target = _target_ref.get_ref()
 	else:
 		return_to_master()
+		follow_target = ahead
 	
 	if follow_target == null or !is_instance_valid(follow_target):
+		find_target()
 		return
 		
 	look_at(follow_target.transform.origin, Vector3(0, 1, 0))
 	var v = follow_target.transform.basis * Vector3(0, 0, 1)
 	
-	if !_target:
+	if ahead:
 		transform.origin = transform.origin.linear_interpolate(follow_target.transform.origin + (v * follow_target.follow_offset), 0.15)
 	else:
 		translate(global_transform.basis * Vector3(0.0, 0.0, -40.0) * delta)
