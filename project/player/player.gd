@@ -29,6 +29,9 @@ func _unhandled_input(event):
 				
 			yield(get_tree().create_timer(0.1), "timeout")
 			
+	if event.is_action_pressed("recall"):
+		get_tree().call_group("duckies", "return_to_master")
+		
 	if event.is_action_pressed("shoot"):
 		var laser = preload("res://weapons/DuckLaser.tscn").instance()
 		get_parent().add_child(laser)
