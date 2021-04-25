@@ -28,6 +28,12 @@ func _unhandled_input(event):
 				break
 				
 			yield(get_tree().create_timer(0.1), "timeout")
+			
+	if event.is_action_pressed("shoot"):
+		var laser = preload("res://weapons/DuckLaser.tscn").instance()
+		get_parent().add_child(laser)
+		laser.global_transform.origin = global_transform.origin
+		laser.global_transform.basis = global_transform.basis
 
 func _physics_process(delta):
 	var boost = 1.0

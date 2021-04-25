@@ -14,6 +14,7 @@ func _shoot():
 	get_parent().add_child(laser)
 	laser.global_transform.origin = global_transform.origin
 	laser.global_transform.basis = global_transform.basis
+	laser.scale.x *= 0.5
 	
 func find_target(random=false):
 	if !is_inside_tree():
