@@ -50,7 +50,7 @@ func set_target(target):
 	if _target:
 		_target.connect("tree_exiting", self, "_clear_target")
 		
-	if !target:
+	if !_target:
 		$ShootTimer.stop()
 		return_to_master()
 	else:
