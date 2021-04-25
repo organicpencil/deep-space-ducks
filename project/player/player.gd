@@ -1,13 +1,19 @@
 extends RigidBody
 
-var last_duck = self
+var behind
 var follow_offset = 1.0
 
 func _unhandled_input(event):
 	if event.is_action_pressed("test"):
 		var duck = load("res://duckling/duckling.tscn").instance()
-		duck.follow_target_nodepath = last_duck.get_path()
-		last_duck = duck
+		duck.master_duck = self
+		duck.ahead = self
+		if behind:
+			behind.ahead = duck
+			duck.behind = behind
+			
+		behind = duck
+		
 		get_parent().add_child(duck)
 		duck.global_transform.origin = global_transform.origin
 		
@@ -20,6 +26,23 @@ func _unhandled_input(event):
 		enemy.follow_target_nodepath = get_path()
 		get_parent().add_child(enemy)
 		enemy.global_transform.origin = v
+		
+	if event.is_action_pressed("deploy"):
+		if behind:
+			var baddies = get_tree().get_nodes_in_group("baddies")
+			var pos = get_viewport().get_camera().project_position(get_viewport().get_mouse_position(), 50.0)
+			
+			var nearest = null
+			var neardist = 0.0
+			
+			for b in baddies:
+				var dist = b.global_transform.origin.distance_to(pos)
+				if nearest == null or dist < neardist:
+					nearest = b
+					neardist = dist
+			
+			var duck = behind
+			duck.set_target(nearest)
 
 func _physics_process(delta):
 	add_central_force(global_transform.basis * Vector3(0.0, 0.0, -60.0))
