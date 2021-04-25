@@ -1,6 +1,10 @@
-extends RigidBody
+extends StaticBody
 
 var follow_target_nodepath
+var health = 1
+var max_health = 1
+
+signal dead
 
 func _ready():
 	rotate_y(rand_range(0.0, 6.0))
@@ -8,6 +12,13 @@ func _ready():
 	
 	$VisibilityNotifier.connect("screen_entered", $Arrow, "hide")
 	$VisibilityNotifier.connect("screen_exited", $Arrow, "show")
+	
+func take_damage(amount : int):
+	if health > 0:
+		health = int(max(health - amount, 0))
+		if health == 0:
+			emit_signal("dead")
+			queue_free()
 	
 func spawn():
 	var enemy = load("res://enemies/small_enemy/small_enemy.tscn").instance()
@@ -17,9 +28,6 @@ func spawn():
 
 func _physics_process(delta):
 	var follow_target = get_node(follow_target_nodepath)
-	if !follow_target:
-		push_warning("No follow target for boss enemy")
-		return
 
 	var v = (global_transform.origin - follow_target.global_transform.origin).normalized()
 	v *= 20.0

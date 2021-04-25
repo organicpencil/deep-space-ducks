@@ -1,10 +1,21 @@
 extends RigidBody
 
 var follow_target_nodepath
+var health = 1
+var max_health = 1
+
+signal dead
 
 func _ready():
 	$ShootTimer.connect("timeout", self, "shoot")
 	$ShootTimer.start()
+	
+func take_damage(amount : int):
+	if health > 0:
+		health = int(max(health - amount, 0))
+		if health == 0:
+			emit_signal("dead")
+			queue_free()
 
 func shoot():
 	if $VisibilityNotifier.is_on_screen():
