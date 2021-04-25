@@ -31,7 +31,8 @@ func _physics_process(delta):
 		push_warning("No follow target for enemy")
 		return
 	
-	add_central_force(global_transform.basis * Vector3(0.0, 0.0, -80.0))
+	if global_transform.origin.distance_to(follow_target.global_transform.origin) > 20.0:
+		add_central_force(global_transform.basis * Vector3(0.0, 0.0, -40.0))
 	
 	$"rocket-enemy".rotate_object_local(Vector3(1, 0, 0), 0.05)
 	
