@@ -22,6 +22,10 @@ func _shoot():
 	
 	laser.rotate_y(rand_range(deg2rad(-5), deg2rad(5)))
 	
+func take_damage(amount : int):
+	# Ducklings absorb hits without taking damage
+	return
+	
 func find_target(random=false):
 	if !is_inside_tree():
 		return

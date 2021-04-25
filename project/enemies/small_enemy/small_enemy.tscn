@@ -21,22 +21,22 @@ surfaces/0 = {
 "vertex_count": 457
 }
 
-[sub_resource type="SpatialMaterial" id=4]
+[sub_resource type="SpatialMaterial" id=3]
 flags_unshaded = true
 params_cull_mode = 1
 params_grow = true
 params_grow_amount = 0.1
 albedo_color = Color( 0, 0, 0, 1 )
 
-[sub_resource type="StreamTexture" id=3]
+[sub_resource type="StreamTexture" id=4]
 flags = 4
 load_path = "res://.import/spritesheet.png-f90f752cfe4b681a105850546318cef5.stex"
 
 [node name="SmallEnemy" type="RigidBody" groups=[
 "baddies",
 ]]
-collision_layer = 25
-collision_mask = 25
+collision_layer = 57
+collision_mask = 57
 contacts_reported = 1
 contact_monitor = true
 can_sleep = false
@@ -60,12 +60,12 @@ material/0 = null
 
 [node name="rocket-enemy2" type="MeshInstance" parent="rocket-enemy"]
 mesh = SubResource( 2 )
-material/0 = SubResource( 4 )
+material/0 = SubResource( 3 )
 
 [node name="rocket-juice" type="Sprite3D" parent="rocket-enemy"]
 pause_mode = 2
 transform = Transform( 0.177477, 0.385934, 0, -0.27505, 0.126486, 0.297979, 0.270725, -0.124497, 0.30274, -1.83789, 0.0690901, -0.0506908 )
-texture = SubResource( 3 )
+texture = SubResource( 4 )
 hframes = 2
 vframes = 2
 
