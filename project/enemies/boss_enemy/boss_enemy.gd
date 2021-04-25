@@ -3,6 +3,9 @@ extends StaticBody
 var follow_target_nodepath
 var health = 1
 var max_health = 1
+const snacks = [preload("res://snacks/cereal_snack.tscn"),
+		preload("res://snacks/hamburger_snack.tscn"),
+		preload("res://snacks/pizza_snack.tscn")]
 
 signal dead
 
@@ -18,7 +21,7 @@ func take_damage(amount : int):
 		health = int(max(health - amount, 0))
 		if health == 0:
 			emit_signal("dead")
-			var snack = preload("res://snacks/cube_snack.tscn").instance()
+			var snack = snacks[randi() % 3].instance()
 			get_parent().add_child(snack)
 			snack.transform.origin = transform.origin
 			queue_free()
