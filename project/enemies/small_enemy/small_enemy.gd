@@ -33,6 +33,8 @@ func _physics_process(delta):
 	
 	add_central_force(global_transform.basis * Vector3(0.0, 0.0, -80.0))
 	
+	$"rocket-enemy".rotate_object_local(Vector3(1, 0, 0), 0.05)
+	
 func _integrate_forces(state):
 	var follow_target = get_node(follow_target_nodepath)
 	if !follow_target:
