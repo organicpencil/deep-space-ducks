@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://duckling/duckling.gd" type="Script" id=1]
 [ext_resource path="res://models/Material.material" type="Material" id=2]
-[ext_resource path="res://player/DuckAnimations.gd" type="Script" id=3]
+[ext_resource path="res://player/duck-animations.gd" type="Script" id=3]
+[ext_resource path="res://models/ducky-hat.gd" type="Script" id=7]
 
 [sub_resource type="CapsuleShape" id=1]
 radius = 0.5
@@ -840,6 +841,11 @@ bones/11/parent = -1
 bones/11/rest = Transform( 1, 0, 2.38419e-07, -1.32251e-07, 0.83205, 0.5547, -1.98376e-07, -0.5547, 0.83205, 3.10861e-17, 0.139999, -0.41263 )
 bones/11/enabled = true
 bones/11/bound_children = [  ]
+
+[node name="BoneAttachment" type="BoneAttachment" parent="ducky/Armature/Skeleton"]
+transform = Transform( 0.999931, -0.00469027, 0.0107771, 0.00660236, 0.982736, -0.184893, -0.0097238, 0.184952, 0.9827, -2.20319e-07, 0.603365, 0.979014 )
+bone_name = "Head"
+script = ExtResource( 7 )
 
 [node name="Duck" type="MeshInstance" parent="ducky/Armature/Skeleton"]
 mesh = SubResource( 2 )
