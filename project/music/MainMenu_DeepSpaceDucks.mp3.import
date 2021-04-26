@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/MainMenu_DeepSpaceDucks.mp3-c3d8b3b0023114f2e0f53523af28ecdf.mp3str"
+
+[deps]
+
+source_file="res://music/MainMenu_DeepSpaceDucks.mp3"
+dest_files=[ "res://.import/MainMenu_DeepSpaceDucks.mp3-c3d8b3b0023114f2e0f53523af28ecdf.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
