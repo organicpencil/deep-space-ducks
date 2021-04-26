@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Eat_PowerUp.wav-c7638400dd5b92f03f158da9d0fa1494.sample"
+
+[deps]
+
+source_file="res://sfx/Eat_PowerUp.wav"
+dest_files=[ "res://.import/Eat_PowerUp.wav-c7638400dd5b92f03f158da9d0fa1494.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

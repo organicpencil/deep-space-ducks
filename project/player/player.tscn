@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://player/player.gd" type="Script" id=1]
 [ext_resource path="res://models/DuckSkin.material" type="Material" id=2]
+[ext_resource path="res://sfx/Thrust.wav" type="AudioStream" id=3]
 [ext_resource path="res://models/helmet/helmet-shield.tscn" type="PackedScene" id=4]
 
 [sub_resource type="SphereShape" id=1]
@@ -874,3 +875,8 @@ one_shot = true
 __meta__ = {
 "_editor_description_": ""
 }
+
+[node name="Thrust" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = 3.0
+autoplay = true

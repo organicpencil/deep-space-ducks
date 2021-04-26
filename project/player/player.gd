@@ -10,6 +10,8 @@ var max_energy = 10.0
 
 signal dead
 
+var HIT = [preload("res://sfx/duck_hit_1.tscn"), preload("res://sfx/duck_hit_2.tscn")]
+
 func _ready():
 	Global.player_path = get_path()
 	yield(get_tree(), "idle_frame")
@@ -42,6 +44,12 @@ func take_damage(amount : int):
 			energy -= 1.0
 			amount -= 1
 			
+		if amount == 0:
+			# TODO: Shield hit sound
+			pass
+		else:
+			get_parent().add_child(HIT[randi() % HIT.size()].instance())
+			
 		health = int(max(health - amount, 0))
 		Global.emit_signal("player_health_changed", health, max_health)
 		if health == 0:
@@ -58,10 +66,12 @@ func _unhandled_input(event):
 		
 	if event.is_action_pressed("deploy"):
 		if behind:
+			get_parent().add_child(preload("res://sfx/deploy_sound.tscn").instance())
 			behind.find_target()
 			
 	if event.is_action_pressed("deploy_all"):
 		while behind:
+			get_parent().add_child(preload("res://sfx/deploy_sound.tscn").instance())
 			var target = behind.find_target(true)
 			if !target:
 				break
@@ -94,11 +104,19 @@ func _physics_process(delta):
 			laser.global_transform.basis = global_transform.basis
 			
 			laser.rotate_y(rand_range(deg2rad(-5), deg2rad(5)))
+			
+			get_parent().add_child(preload("res://sfx/heavy_laser_sound.tscn").instance())
 	
 	var boost = 1.0
 	if Input.is_action_pressed("boost") and energy >= 1.0 * delta:
 		boost = 3.0
 		energy -= 1.0 * delta
+		
+		if !$Thrust.is_playing():
+			$Thrust.play()
+			
+	else:
+		$Thrust.stop()
 		
 	if Input.is_action_pressed("forward") or Input.is_action_pressed("boost"):
 		add_central_force(global_transform.basis * Vector3(0.0, 0.0, -40.0) * boost)

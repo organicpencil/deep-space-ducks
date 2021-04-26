@@ -6,6 +6,8 @@ var max_health = 1
 
 signal dead
 
+var EXPLOSIONS = [preload("res://sfx/explode_1.tscn"), preload("res://sfx/explode_2.tscn"), preload("res://sfx/explode_3.tscn")]
+
 func _ready():
 	$ShootTimer.connect("timeout", self, "_shoot")
 	$ShootTimer.start()
@@ -15,6 +17,7 @@ func take_damage(amount : int):
 		health = int(max(health - amount, 0))
 		if health == 0:
 			emit_signal("dead")
+			get_parent().add_child(EXPLOSIONS[randi() % EXPLOSIONS.size()].instance())
 			queue_free()
 
 func _shoot():
@@ -26,6 +29,8 @@ func _shoot():
 			laser.scale.x *= 0.5
 			
 			laser.rotate_y(rand_range(deg2rad(-15), deg2rad(15)))
+			
+			get_parent().add_child(preload("res://sfx/light_laser_sound.tscn").instance())
 		
 	$ShootTimer.wait_time = rand_range(0.5, 2.0)
 	$ShootTimer.start()

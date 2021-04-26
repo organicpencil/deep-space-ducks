@@ -7,11 +7,14 @@ var _target_ref
 var master_duck
 var duck_type = Global.DUCKY_BALD
 
+var QUACKS = [preload("res://sfx/quack_1.tscn"), preload("res://sfx/quack_2.tscn"), preload("res://sfx/quack_3.tscn"), preload("res://sfx/quack_4.tscn")]
+
 func _init():
 	duck_type = randi() % 4
 
 func _ready():
 	$ShootTimer.connect("timeout", self, "_shoot")
+	get_parent().add_child(QUACKS[randi() % QUACKS.size()].instance())
 	
 func _shoot():
 	var laser = preload("res://weapons/DuckLaser.tscn").instance()

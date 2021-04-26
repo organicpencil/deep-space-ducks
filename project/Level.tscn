@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Camera.gd" type="Script" id=1]
 [ext_resource path="res://background/bkgd_7.png" type="Texture" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://fade_in.gd" type="Script" id=10]
 [ext_resource path="res://pause_menu/pause_menu.tscn" type="PackedScene" id=11]
 [ext_resource path="res://sfx/Gui_Button_Click.wav" type="AudioStream" id=12]
+[ext_resource path="res://music/DuckChips1.mp3" type="AudioStream" id=13]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.317647, 0.858824, 1, 1 )
@@ -46,6 +47,10 @@ script = ExtResource( 5 )
 [node name="Click" type="AudioStreamPlayer" parent="."]
 pause_mode = 2
 stream = ExtResource( 12 )
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 13 )
+autoplay = true
 
 [node name="ParallaxBackground" parent="." instance=ExtResource( 3 )]
 
