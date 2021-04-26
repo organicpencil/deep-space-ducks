@@ -4,7 +4,6 @@ extends "res://levels/level.gd"
 var enemies_remaining = 0
 
 func _ready():
-	._ready()
 	var enemy = spawn_big_enemy()
 	enemy.connect("dead", self, "_wave_2")
 

@@ -1,19 +1,25 @@
 extends Node
 
+export(String, FILE, "*.tscn") var next_scene
 
 func _ready():
+	assert(next_scene != "")
 	yield(get_tree(), "idle_frame")
 	
 	Global.connect("win", $ParallaxBackground2/Win, "show")
+	Global.connect("win", self, "_win")
 	Global.connect("lose", $ParallaxBackground2/Lose, "show")
 	Global.connect("player_health_changed", self, "_player_health_changed")
 	Global.connect("player_energy_changed", self, "_player_energy_changed")
-	
+
 func _input(event):
 	if event.is_action_pressed("pause"):
 		$Click.play()
 		$ParallaxBackground2/PauseMenu.show()
 		get_tree().paused = true
+	
+func _win():
+	get_tree().change_scene(next_scene)
 	
 func _player_health_changed(health, max_health):
 	var cont = $ParallaxBackground2/HeartContainer
