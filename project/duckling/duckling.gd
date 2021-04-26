@@ -114,6 +114,9 @@ func _physics_process(delta):
 		find_target(true)
 		return
 		
+	if transform.origin.distance_to(follow_target.transform.origin) < 0.1:
+		return
+		
 	look_at(follow_target.transform.origin, Vector3(0, 1, 0))
 	var v = follow_target.transform.basis * Vector3(0, 0, 1)
 	
