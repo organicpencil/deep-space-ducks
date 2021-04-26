@@ -1,6 +1,6 @@
 extends Control
 
-var LEVEL = preload("res://Level.tscn")
+var NEXT_SCENE = preload("res://levels/level_1.tscn")
 
 func _ready():
 	$StartTexture/AnimationPlayer.play("start_pulse")
@@ -15,4 +15,4 @@ func _input(event):
 		$AnimationPlayer.play("transition")
 
 func _start_game(anim):
-	get_tree().change_scene_to(LEVEL)
+	get_tree().change_scene_to(NEXT_SCENE)

@@ -1,11 +1,8 @@
 extends Node
 
-var enemies_remaining = 0
 
 func _ready():
 	yield(get_tree(), "idle_frame")
-	var enemy = spawn_big_enemy()
-	enemy.connect("dead", self, "_wave_2")
 	
 	Global.connect("win", $ParallaxBackground2/Win, "show")
 	Global.connect("lose", $ParallaxBackground2/Lose, "show")
@@ -44,45 +41,3 @@ func spawn_big_enemy():
 	add_child(enemy)
 	enemy.global_transform.origin = v
 	return enemy
-
-func _wave_2():
-	yield(get_tree().create_timer(3.0), "timeout")
-	var enemy = spawn_big_enemy()
-	enemy.connect("dead", self, "_wave_3")
-	enemies_remaining += 1
-	
-	enemy = spawn_big_enemy()
-	enemy.connect("dead", self, "_wave_3")
-	enemies_remaining += 1
-	
-func _wave_3():
-	enemies_remaining -= 1
-	if enemies_remaining == 0:
-		var enemy = spawn_big_enemy()
-		enemy.connect("dead", self, "_wave_4")
-		enemies_remaining += 1
-		
-		enemy = spawn_big_enemy()
-		enemy.connect("dead", self, "_wave_4")
-		enemies_remaining += 1
-		
-func _wave_4():
-	enemies_remaining -= 1
-	if enemies_remaining == 0:
-		var enemy = spawn_big_enemy()
-		enemy.connect("dead", self, "_wave_5")
-		enemies_remaining += 1
-		
-		enemy = spawn_big_enemy()
-		enemy.connect("dead", self, "_wave_5")
-		enemies_remaining += 1
-		
-		enemy = spawn_big_enemy()
-		enemy.connect("dead", self, "_wave_5")
-		enemies_remaining += 1
-
-func _wave_5():
-	enemies_remaining -= 1
-	if enemies_remaining == 0:
-		print("You win!")
-		Global.emit_signal("win")
