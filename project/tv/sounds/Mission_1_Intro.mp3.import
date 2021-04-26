@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Mission_1_Intro.mp3-fae55b959193633b46078c6cab8db639.mp3str"
+
+[deps]
+
+source_file="res://tv/sounds/Mission_1_Intro.mp3"
+dest_files=[ "res://.import/Mission_1_Intro.mp3-fae55b959193633b46078c6cab8db639.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/BossBattleTransmission.mp3-dbf0807fe3928ab33c6437e45da4fef9.mp3str"
+
+[deps]
+
+source_file="res://tv/sounds/BossBattleTransmission.mp3"
+dest_files=[ "res://.import/BossBattleTransmission.mp3-dbf0807fe3928ab33c6437e45da4fef9.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
