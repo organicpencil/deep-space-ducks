@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Ambience_Loop_SolarWind.mp3-2e3f1a5f6ba7163ad8ff0c56103e235c.mp3str"
+
+[deps]
+
+source_file="res://music/Ambience_Loop_SolarWind.mp3"
+dest_files=[ "res://.import/Ambience_Loop_SolarWind.mp3-2e3f1a5f6ba7163ad8ff0c56103e235c.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
