@@ -13,8 +13,9 @@ func _ready():
 	rotate_y(rand_range(0.0, 6.0))
 	$SpawnTimer.connect("timeout", self, "spawn")
 	
-	$VisibilityNotifier.connect("screen_entered", $Arrow, "hide")
-	$VisibilityNotifier.connect("screen_exited", $Arrow, "show")
+	#$VisibilityNotifier.connect("screen_entered", $Arrow, "hide")
+	#$VisibilityNotifier.connect("screen_exited", $Arrow, "show")
+	$Arrow.hide()
 	
 func take_damage(amount : int):
 	if health > 0:
@@ -32,9 +33,11 @@ func spawn():
 	get_parent().add_child(enemy)
 	enemy.global_transform.origin = global_transform.origin
 
+"""
 func _physics_process(delta):
 	var follow_target = get_node(follow_target_nodepath)
 
 	var v = (global_transform.origin - follow_target.global_transform.origin).normalized()
 	v *= 20.0
 	$Arrow.global_transform.origin = follow_target.global_transform.origin + v
+"""
