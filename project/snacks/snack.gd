@@ -13,6 +13,7 @@ func _process(delta):
 func _body_entered(node):
 	if node.name == "Player":
 		if node.health > 0:
+			get_parent().add_child(preload("res://sfx/eat_sound.tscn").instance())
 			node.health = node.max_health
 			Global.emit_signal("player_health_changed", node.health, node.max_health)
 			node.spawn_duckling()

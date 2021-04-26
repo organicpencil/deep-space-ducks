@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Duck_Hit_1.wav-4fe92eb2cf7aa58927284bb1a1b16ed4.sample"
+
+[deps]
+
+source_file="res://sfx/Duck_Hit_1.wav"
+dest_files=[ "res://.import/Duck_Hit_1.wav-4fe92eb2cf7aa58927284bb1a1b16ed4.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
