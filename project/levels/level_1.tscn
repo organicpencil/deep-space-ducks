@@ -5,3 +5,4 @@
 
 [node name="Level1" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+next_scene = "res://levels/level_2.tscn"
