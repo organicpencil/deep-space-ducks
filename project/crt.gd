@@ -11,7 +11,8 @@ var incoming_transmission = false
 
 var preloaded_images = [preload("res://background/DeepSpaceDucks-01.png"),
 						preload("res://tv/Corg Dominion-01.png"),
-						preload("res://tv/EmergencyTransmission-01.png")]
+						preload("res://tv/EmergencyTransmission-01.png"),
+						preload("res://tv/EndTransmission-01.png")]
 var dialog_text1 = """ Ducks, my sensors tell me we are being attacked. The Corg Dominion is upon us! Go out and repel the assault. Don’t let them destroy me. The fate of the universe rests on your... uh... Quack. This is why you get paid the big ducks!"""
 var dialog_text2 = """ GoooOOOoood! Mission details will be sent to your cyber retinal display (CRD). I’ll upload my Gordon motivational tape for you. Usually. I sell it for the low price of $5.99, but for you it's free."""
 var dialog_text3 = """ Great job ducks! The colony is safe! Also, thank the Zods my favorite radio station was on that ship 13561.246 Paradise... Anyway... The Corg dominion is weak, now is time to take out their home planet and rocket factory to protect our people. The coordinates to their planet will be on your CRD.  On the way to the planet drop beacons in the glowing areas. That’s how I’ll stay in contact with you."""
@@ -61,15 +62,15 @@ func _on_Small_CRT_Button_pressed():
 		play_next_dialog()
 
 func _on_PowerButton_power_clicked():
-	print("CLICKED")
 	if (self.name == "Big CRT"):
 		hide()
 	else:
 		show()
+		screen_texture.set_texture(preloaded_images[0])
 
 func _on_Dialog_Sound_finished():
 	print("stop playing")
 	dialog_player.stop()
-	screen_texture.set_texture(preloaded_images[0])
-	subtitles.text = "TRANSMISSION ENDED. Click the red button to close the transmission"
+	screen_texture.set_texture(preloaded_images[3])
+	subtitles.text = "TRANSMISSION ENDED. Click the red button to close the transmission."
 	pass
