@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Mission1_Response.mp3-29848e0481d9bf63022c51817e84f08c.mp3str"
+
+[deps]
+
+source_file="res://tv/sounds/Mission1_Response.mp3"
+dest_files=[ "res://.import/Mission1_Response.mp3-29848e0481d9bf63022c51817e84f08c.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

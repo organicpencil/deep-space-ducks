@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/BossBattleTransmission_ ExtraLaugh.mp3-68292cecea3fb92bfa2c25a64e5e076e.mp3str"
+
+[deps]
+
+source_file="res://tv/sounds/BossBattleTransmission_ ExtraLaugh.mp3"
+dest_files=[ "res://.import/BossBattleTransmission_ ExtraLaugh.mp3-68292cecea3fb92bfa2c25a64e5e076e.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

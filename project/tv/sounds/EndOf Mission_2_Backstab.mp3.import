@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/EndOf Mission_2_Backstab.mp3-47f52ad67036aff40be2c133df270714.mp3str"
+
+[deps]
+
+source_file="res://tv/sounds/EndOf Mission_2_Backstab.mp3"
+dest_files=[ "res://.import/EndOf Mission_2_Backstab.mp3-47f52ad67036aff40be2c133df270714.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

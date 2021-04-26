@@ -13,11 +13,28 @@
 [ext_resource path="res://hud/volume_bar.tscn" type="PackedScene" id=11]
 [ext_resource path="res://pause_menu/pause_menu.tscn" type="PackedScene" id=12]
 [ext_resource path="res://levels/level.gd" type="Script" id=13]
+[ext_resource path="res://tv/crt.tscn" type="PackedScene" id=14]
+[ext_resource path="res://crt-corner-button.gd" type="Script" id=15]
 
-[sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0.317647, 0.858824, 1, 1 )
+[sub_resource type="GDScript" id=1]
+script/source = "extends Button
+
+func _toggled(button_pressed):
+	button_pressed.hide()
+
+func _on_Small_CRT_Button_hide():
+	if (name == \"Big CRT Button\"):
+		show()
+
+func _on_Big_CRT_Button_hide():
+	if (name == \"Small CRT Button\"):
+		show()
+"
 
 [sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.317647, 0.858824, 1, 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
 bg_color = Color( 0.105882, 0.105882, 0.105882, 1 )
 
 [sub_resource type="Animation" id=3]
@@ -40,6 +57,36 @@ tracks/0/keys = {
 background_mode = 4
 ambient_light_color = Color( 1, 1, 1, 1 )
 ambient_light_energy = 0.2
+
+[sub_resource type="ViewportTexture" id=5]
+viewport_path = NodePath("Camera/Big CRT/Viewport")
+
+[sub_resource type="SpatialMaterial" id=6]
+resource_local_to_scene = true
+albedo_texture = SubResource( 5 )
+metallic = 0.1
+roughness = 0.2
+
+[sub_resource type="ViewportTexture" id=7]
+viewport_path = NodePath("Camera/Big CRT/Screen Buttons")
+
+[sub_resource type="ViewportTexture" id=8]
+viewport_path = NodePath("Camera/Big CRT/Screen Buttons")
+
+[sub_resource type="SpatialMaterial" id=9]
+resource_local_to_scene = true
+flags_transparent = true
+flags_unshaded = true
+flags_do_not_receive_shadows = true
+albedo_texture = SubResource( 7 )
+detail_enabled = true
+detail_blend_mode = 1
+detail_uv_layer = 0
+detail_albedo = SubResource( 8 )
+
+[sub_resource type="PlaneMesh" id=10]
+resource_local_to_scene = true
+material = SubResource( 9 )
 
 [node name="Level" type="Node"]
 script = ExtResource( 13 )
@@ -80,11 +127,11 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="ParallaxBackground2"]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -278.0
+anchor_left = 0.638
+anchor_right = 0.645
+margin_left = -133.0
 margin_top = 8.0
-margin_right = -8.0
+margin_right = 137.0
 margin_bottom = 107.0
 text = "Move & rotate: W/A/D or arrow keys
 Shoot: Space bar
@@ -236,8 +283,8 @@ margin_left = 8.0
 margin_top = 48.0
 margin_right = 364.0
 margin_bottom = 62.0
-custom_styles/fg = SubResource( 1 )
-custom_styles/bg = SubResource( 2 )
+custom_styles/fg = SubResource( 2 )
+custom_styles/bg = SubResource( 3 )
 percent_visible = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -258,6 +305,23 @@ anims/fade_in = SubResource( 3 )
 [node name="PauseMenu" parent="ParallaxBackground2" instance=ExtResource( 12 )]
 visible = false
 
+[node name="Small CRT Button" type="Button" parent="ParallaxBackground2"]
+modulate = Color( 1, 1, 1, 0 )
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -245.0
+margin_top = 16.0
+margin_right = -15.0
+margin_bottom = 209.0
+action_mode = 0
+script = ExtResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+help_text = NodePath("../Label")
+health_bar = NodePath("../HeartContainer")
+player_energy = NodePath("../PlayerEnergy")
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 4 )
 
@@ -268,8 +332,35 @@ current = true
 size = 60.0
 script = ExtResource( 5 )
 
+[node name="Small CRT" parent="Camera" instance=ExtResource( 14 )]
+transform = Transform( -7.53252, -0.383499, 2.66723, 0, 7.91857, 1.13854, -2.69466, 1.07201, -7.45584, 43.097, 10.613, -30 )
+
+[node name="Big CRT" parent="Camera" instance=ExtResource( 14 )]
+transform = Transform( -27.802, 0, -1.20797e-06, 0, 23.329, 0, 4.19799e-06, 0, -8, -0.278, -29.259, -30 )
+visible = false
+
+[node name="Sphere" parent="Camera/Big CRT" index="6"]
+material/0 = SubResource( 6 )
+
+[node name="Select" parent="Camera/Big CRT" index="7"]
+mesh = SubResource( 10 )
+material/0 = SubResource( 9 )
+
+[node name="Dialog Sound" parent="Camera/Big CRT" index="9"]
+volume_db = -80.0
+
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 0.707107, -0.612372, -0.353553, 0, -0.5, 0.866025, -0.707107, -0.612372, -0.353553, 0, 11, 0 )
 light_energy = 0.8
 
 [node name="Player" parent="." instance=ExtResource( 9 )]
+
+[connection signal="hide" from="ParallaxBackground2/Small CRT Button" to="ParallaxBackground2/Small CRT Button" method="_on_Small_CRT_Button_hide"]
+[connection signal="pressed" from="ParallaxBackground2/Small CRT Button" to="Camera/Big CRT" method="_on_Small_CRT_Button_pressed"]
+[connection signal="pressed" from="ParallaxBackground2/Small CRT Button" to="ParallaxBackground2/Small CRT Button" method="_on_Small_CRT_Button_pressed"]
+[connection signal="pressed" from="ParallaxBackground2/Small CRT Button" to="Camera/Small CRT" method="_on_Small_CRT_Button_pressed"]
+[connection signal="power_clicked" from="Camera/Big CRT/PowerButton/PowerButton" to="Camera/Big CRT" method="_on_PowerButton_power_clicked"]
+[connection signal="power_clicked" from="Camera/Big CRT/PowerButton/PowerButton" to="ParallaxBackground2/Small CRT Button" method="_on_PowerButton_power_clicked"]
+[connection signal="power_clicked" from="Camera/Big CRT/PowerButton/PowerButton" to="Camera/Small CRT" method="_on_PowerButton_power_clicked"]
+
+[editable path="Camera/Big CRT"]
