@@ -109,12 +109,8 @@ func _physics_process(delta):
 		$"big-beak/AnimationPlayer".playback_speed = 1.0
 
 	var v = 0.0
-	
-	if Input.is_action_pressed("left"):
-		v += 4.0
-		
-	if Input.is_action_pressed("right"):
-		v -= 4.0
-		
+	v += Input.get_action_strength("left") * 4.0
+	v -= Input.get_action_strength("right") * 4.0
+
 	angular_velocity = Vector3(0, v, 0) / boost
 	Global.emit_signal("player_energy_changed", energy, max_energy)
