@@ -11,8 +11,8 @@ dest_files=[ "res://.import/beacon.glb-32a8df6184ae9aaf8ebbd1f731a7e96f.scn" ]
 
 [params]
 
-nodes/root_type="Spatial"
-nodes/root_name="Scene Root"
+nodes/root_type="Area"
+nodes/root_name="Beacon"
 nodes/root_scale=1.0
 nodes/custom_script=""
 nodes/storage=0
