@@ -34,7 +34,7 @@ material/0 = SubResource( 3 )
 [node name="VisibilityNotifier" type="VisibilityNotifier" parent="."]
 
 [node name="SpawnTimer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 3.0
 autostart = true
 
 [node name="Arrow" type="MeshInstance" parent="."]
