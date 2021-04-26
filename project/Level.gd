@@ -12,6 +12,12 @@ func _ready():
 	Global.connect("player_health_changed", self, "_player_health_changed")
 	Global.connect("player_energy_changed", self, "_player_energy_changed")
 	
+func _input(event):
+	if event.is_action_pressed("pause"):
+		$Click.play()
+		$ParallaxBackground2/PauseMenu.show()
+		get_tree().paused = true
+	
 func _player_health_changed(health, max_health):
 	var cont = $ParallaxBackground2/HeartContainer
 	for c in cont.get_children():
