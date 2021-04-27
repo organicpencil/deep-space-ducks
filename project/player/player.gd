@@ -61,8 +61,8 @@ func _unhandled_input(event):
 	if health == 0:
 		return
 		
-	if event.is_action_pressed("test"):
-		spawn_duckling()
+	#if event.is_action_pressed("test"):
+	#	spawn_duckling()
 		
 	if event.is_action_pressed("deploy"):
 		if behind:
