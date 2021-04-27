@@ -53,6 +53,10 @@ func _wave_4():
 
 func _wave_5():
 	enemies_remaining -= 1
+	
+	if enemies_remaining == 1:
+		$ParallaxBackground2/OneRemaining.visible = true
+	
 	if enemies_remaining == 0:
 		print("You win!")
 		Global.emit_signal("win")
