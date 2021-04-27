@@ -28,6 +28,10 @@ func _wave_3():
 		enemy.connect("dead", self, "_wave_4")
 		enemies_remaining += 1
 		
+		enemy = spawn_big_enemy()
+		enemy.connect("dead", self, "_wave_4")
+		enemies_remaining += 1
+		
 func _wave_4():
 	enemies_remaining -= 1
 	if enemies_remaining == 0:
@@ -42,9 +46,17 @@ func _wave_4():
 		enemy = spawn_big_enemy()
 		enemy.connect("dead", self, "_wave_5")
 		enemies_remaining += 1
+		
+		enemy = spawn_big_enemy()
+		enemy.connect("dead", self, "_wave_5")
+		enemies_remaining += 1
 
 func _wave_5():
 	enemies_remaining -= 1
+	
+	if enemies_remaining == 1:
+		$ParallaxBackground2/OneRemaining.visible = true
+	
 	if enemies_remaining == 0:
 		print("You win!")
 		Global.emit_signal("win")
