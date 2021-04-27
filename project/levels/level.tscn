@@ -13,7 +13,6 @@
 [ext_resource path="res://hud/volume_bar.tscn" type="PackedScene" id=11]
 [ext_resource path="res://pause_menu/pause_menu.tscn" type="PackedScene" id=12]
 [ext_resource path="res://levels/level.gd" type="Script" id=13]
-[ext_resource path="res://pause_menu/pause_menu_small.tres" type="DynamicFont" id=14]
 [ext_resource path="res://levels/help_text.gd" type="Script" id=15]
 [ext_resource path="res://pause_menu/pause_menu_large.tres" type="DynamicFont" id=16]
 [ext_resource path="res://levels/lose.gd" type="Script" id=17]
@@ -106,6 +105,7 @@ margin_left = -133.0
 margin_top = 8.0
 margin_right = 137.0
 margin_bottom = 107.0
+
 [node name="HelpText" type="Label" parent="ParallaxBackground2"]
 anchor_left = 0.5
 anchor_top = 0.5
@@ -115,7 +115,6 @@ margin_left = -198.5
 margin_top = 23.5
 margin_right = 198.5
 margin_bottom = 176.5
-custom_fonts/font = ExtResource( 18 )
 text = "Move & rotate: W/A/D or arrow keys
 Shoot: Space bar
 Boost: Shift (must have energy)
@@ -277,6 +276,7 @@ __meta__ = {
 }
 
 [node name="FadeIn" type="ColorRect" parent="ParallaxBackground2"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )
@@ -299,7 +299,7 @@ margin_top = 16.0
 margin_right = -15.0
 margin_bottom = 209.0
 action_mode = 0
-script = ExtResource( 15 )
+script = ExtResource( 19 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -318,10 +318,10 @@ size = 60.0
 far = 500.0
 script = ExtResource( 5 )
 
-[node name="Small CRT" parent="Camera" instance=ExtResource( 14 )]
+[node name="Small CRT" parent="Camera" instance=ExtResource( 18 )]
 transform = Transform( -7.53252, -0.383499, 2.66723, 0, 7.91857, 1.13854, -2.69466, 1.07201, -7.45584, 43.097, 10.613, -30 )
 
-[node name="Big CRT" parent="Camera" instance=ExtResource( 14 )]
+[node name="Big CRT" parent="Camera" instance=ExtResource( 18 )]
 transform = Transform( -27.802, 0, -1.20797e-06, 0, 23.329, 0, 4.19799e-06, 0, -8, -0.278, -29.259, -30 )
 visible = false
 
