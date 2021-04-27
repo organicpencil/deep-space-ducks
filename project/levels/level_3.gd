@@ -15,8 +15,10 @@ func spawn_beacon():
 		var b = preload("res://models/beacon/beacon.tscn").instance()
 		add_child(b)
 		b.connect("placed", self, "spawn_beacon")
-		var pos = $Player.transform.origin + Vector3(rand_range(-100, 100), 0, rand_range(-200, -400))
+		var pos = $Player.transform.origin + Vector3(rand_range(-200, 200), 0, rand_range(-200, -400))
 		b.transform.origin = pos
+		
+		$ParallaxBackground2/Beacons.text = "Beacons: %d/4" % (3-beacons)
 
 	else:
 		Global.emit_signal("win")
