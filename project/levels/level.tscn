@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://background/ParallaxBackground.tscn" type="PackedScene" id=1]
 [ext_resource path="res://hud/heart.tscn" type="PackedScene" id=2]
@@ -16,77 +16,46 @@
 [ext_resource path="res://tv/crt.tscn" type="PackedScene" id=14]
 [ext_resource path="res://crt-corner-button.gd" type="Script" id=15]
 
-[sub_resource type="GDScript" id=1]
-script/source = "extends Button
-
-func _toggled(button_pressed):
-	button_pressed.hide()
-
-func _on_Small_CRT_Button_hide():
-	if (name == \"Big CRT Button\"):
-		show()
-
-func _on_Big_CRT_Button_hide():
-	if (name == \"Small CRT Button\"):
-		show()
-"
-
-[sub_resource type="StyleBoxFlat" id=2]
+[sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.317647, 0.858824, 1, 1 )
 
-[sub_resource type="StyleBoxFlat" id=3]
+[sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.105882, 0.105882, 0.105882, 1 )
 
-[sub_resource type="Animation" id=3]
-resource_name = "fade_in"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
-}
-
-[sub_resource type="Environment" id=4]
+[sub_resource type="Environment" id=3]
 background_mode = 4
 ambient_light_color = Color( 1, 1, 1, 1 )
 ambient_light_energy = 0.2
 
-[sub_resource type="ViewportTexture" id=5]
+[sub_resource type="ViewportTexture" id=4]
 viewport_path = NodePath("Camera/Big CRT/Viewport")
 
-[sub_resource type="SpatialMaterial" id=6]
+[sub_resource type="SpatialMaterial" id=5]
 resource_local_to_scene = true
-albedo_texture = SubResource( 5 )
+albedo_texture = SubResource( 4 )
 metallic = 0.1
 roughness = 0.2
+
+[sub_resource type="ViewportTexture" id=6]
+viewport_path = NodePath("Camera/Big CRT/Screen Buttons")
 
 [sub_resource type="ViewportTexture" id=7]
 viewport_path = NodePath("Camera/Big CRT/Screen Buttons")
 
-[sub_resource type="ViewportTexture" id=8]
-viewport_path = NodePath("Camera/Big CRT/Screen Buttons")
-
-[sub_resource type="SpatialMaterial" id=9]
+[sub_resource type="SpatialMaterial" id=8]
 resource_local_to_scene = true
 flags_transparent = true
 flags_unshaded = true
 flags_do_not_receive_shadows = true
-albedo_texture = SubResource( 7 )
+albedo_texture = SubResource( 6 )
 detail_enabled = true
 detail_blend_mode = 1
 detail_uv_layer = 0
-detail_albedo = SubResource( 8 )
+detail_albedo = SubResource( 7 )
 
-[sub_resource type="PlaneMesh" id=10]
+[sub_resource type="PlaneMesh" id=9]
 resource_local_to_scene = true
-material = SubResource( 9 )
+material = SubResource( 8 )
 
 [node name="Level" type="Node"]
 script = ExtResource( 13 )
@@ -283,8 +252,8 @@ margin_left = 8.0
 margin_top = 48.0
 margin_right = 364.0
 margin_bottom = 62.0
-custom_styles/fg = SubResource( 2 )
-custom_styles/bg = SubResource( 3 )
+custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
 percent_visible = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -300,7 +269,6 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ParallaxBackground2/FadeIn"]
-anims/fade_in = SubResource( 3 )
 
 [node name="PauseMenu" parent="ParallaxBackground2" instance=ExtResource( 12 )]
 visible = false
@@ -323,7 +291,7 @@ health_bar = NodePath("../HeartContainer")
 player_energy = NodePath("../PlayerEnergy")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource( 4 )
+environment = SubResource( 3 )
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 5.96046e-08, 1, 0, -1, 5.96046e-08, 0, 50, 0 )
@@ -340,11 +308,11 @@ transform = Transform( -27.802, 0, -1.20797e-06, 0, 23.329, 0, 4.19799e-06, 0, -
 visible = false
 
 [node name="Sphere" parent="Camera/Big CRT" index="6"]
-material/0 = SubResource( 6 )
+material/0 = SubResource( 5 )
 
 [node name="Select" parent="Camera/Big CRT" index="7"]
-mesh = SubResource( 10 )
-material/0 = SubResource( 9 )
+mesh = SubResource( 9 )
+material/0 = SubResource( 8 )
 
 [node name="Dialog Sound" parent="Camera/Big CRT" index="9"]
 volume_db = -80.0
@@ -357,10 +325,10 @@ light_energy = 0.8
 
 [connection signal="hide" from="ParallaxBackground2/Small CRT Button" to="ParallaxBackground2/Small CRT Button" method="_on_Small_CRT_Button_hide"]
 [connection signal="pressed" from="ParallaxBackground2/Small CRT Button" to="Camera/Big CRT" method="_on_Small_CRT_Button_pressed"]
-[connection signal="pressed" from="ParallaxBackground2/Small CRT Button" to="ParallaxBackground2/Small CRT Button" method="_on_Small_CRT_Button_pressed"]
 [connection signal="pressed" from="ParallaxBackground2/Small CRT Button" to="Camera/Small CRT" method="_on_Small_CRT_Button_pressed"]
+[connection signal="pressed" from="ParallaxBackground2/Small CRT Button" to="ParallaxBackground2/Small CRT Button" method="_on_Small_CRT_Button_pressed"]
 [connection signal="power_clicked" from="Camera/Big CRT/PowerButton/PowerButton" to="Camera/Big CRT" method="_on_PowerButton_power_clicked"]
-[connection signal="power_clicked" from="Camera/Big CRT/PowerButton/PowerButton" to="ParallaxBackground2/Small CRT Button" method="_on_PowerButton_power_clicked"]
 [connection signal="power_clicked" from="Camera/Big CRT/PowerButton/PowerButton" to="Camera/Small CRT" method="_on_PowerButton_power_clicked"]
+[connection signal="power_clicked" from="Camera/Big CRT/PowerButton/PowerButton" to="ParallaxBackground2/Small CRT Button" method="_on_PowerButton_power_clicked"]
 
 [editable path="Camera/Big CRT"]
