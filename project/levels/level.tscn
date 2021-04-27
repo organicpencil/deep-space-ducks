@@ -276,6 +276,7 @@ transform = Transform( 1, 0, 0, 0, 5.96046e-08, 1, 0, -1, 5.96046e-08, 0, 50, 0 
 projection = 1
 current = true
 size = 60.0
+far = 500.0
 script = ExtResource( 5 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
