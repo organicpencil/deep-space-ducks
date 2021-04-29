@@ -32,6 +32,13 @@ func _ready():
 	subtitles = get_node(subtitles)
 	dialog_player = get_node(dialog_player)
 	
+	if (get_tree().get_current_scene().name == "Level1"):
+		current_dialog = 0
+	elif (get_tree().get_current_scene().name == "Level2"):
+		current_dialog = 1
+	elif (get_tree().get_current_scene().name == "Level3"):
+		current_dialog = 2
+	
 	if (name == "Large CRT"):
 		dialog_player.set_volume_db(-100)
 	incoming_transmission()
@@ -44,6 +51,7 @@ func incoming_transmission():
 func play_next_dialog():
 	if (incoming_transmission == false):
 		return
+	
 	# Set Texture To Zordawn the Corg
 	screen_texture.set_texture(preloaded_images[1])
 	if (current_dialog < 5):
@@ -66,11 +74,18 @@ func _on_PowerButton_power_clicked():
 		hide()
 	else:
 		show()
-		screen_texture.set_texture(preloaded_images[0])
 
 func _on_Dialog_Sound_finished():
 	print("stop playing")
 	dialog_player.stop()
 	screen_texture.set_texture(preloaded_images[3])
 	subtitles.text = "TRANSMISSION ENDED. Click the red button to close the transmission."
+	yield(get_tree().create_timer(2.0), "timeout")
+	screen_texture.set_texture(preloaded_images[0])
 	pass
+
+func _on_Level3_send_transmission():
+	incoming_transmission()
+
+func _on_Level1_send_transmission():
+	incoming_transmission()

@@ -298,12 +298,14 @@ margin_left = -245.0
 margin_top = 16.0
 margin_right = -15.0
 margin_bottom = 209.0
+focus_mode = 0
 action_mode = 0
+enabled_focus_mode = 0
 script = ExtResource( 19 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-help_text = NodePath("../Label")
+help_text = NodePath("../HelpText")
 health_bar = NodePath("../HeartContainer")
 player_energy = NodePath("../PlayerEnergy")
 
@@ -319,9 +321,11 @@ far = 500.0
 script = ExtResource( 5 )
 
 [node name="Small CRT" parent="Camera" instance=ExtResource( 18 )]
+pause_mode = 2
 transform = Transform( -7.53252, -0.383499, 2.66723, 0, 7.91857, 1.13854, -2.69466, 1.07201, -7.45584, 43.097, 10.613, -30 )
 
 [node name="Big CRT" parent="Camera" instance=ExtResource( 18 )]
+pause_mode = 2
 transform = Transform( -27.802, 0, -1.20797e-06, 0, 23.329, 0, 4.19799e-06, 0, -8, -0.278, -29.259, -30 )
 visible = false
 
@@ -342,11 +346,11 @@ light_energy = 0.8
 [node name="Player" parent="." instance=ExtResource( 9 )]
 
 [connection signal="hide" from="ParallaxBackground2/Small CRT Button" to="ParallaxBackground2/Small CRT Button" method="_on_Small_CRT_Button_hide"]
-[connection signal="pressed" from="ParallaxBackground2/Small CRT Button" to="Camera/Big CRT" method="_on_Small_CRT_Button_pressed"]
 [connection signal="pressed" from="ParallaxBackground2/Small CRT Button" to="Camera/Small CRT" method="_on_Small_CRT_Button_pressed"]
+[connection signal="pressed" from="ParallaxBackground2/Small CRT Button" to="Camera/Big CRT" method="_on_Small_CRT_Button_pressed"]
 [connection signal="pressed" from="ParallaxBackground2/Small CRT Button" to="ParallaxBackground2/Small CRT Button" method="_on_Small_CRT_Button_pressed"]
-[connection signal="power_clicked" from="Camera/Big CRT/PowerButton/PowerButton" to="Camera/Big CRT" method="_on_PowerButton_power_clicked"]
 [connection signal="power_clicked" from="Camera/Big CRT/PowerButton/PowerButton" to="Camera/Small CRT" method="_on_PowerButton_power_clicked"]
+[connection signal="power_clicked" from="Camera/Big CRT/PowerButton/PowerButton" to="Camera/Big CRT" method="_on_PowerButton_power_clicked"]
 [connection signal="power_clicked" from="Camera/Big CRT/PowerButton/PowerButton" to="ParallaxBackground2/Small CRT Button" method="_on_PowerButton_power_clicked"]
 
 [editable path="Camera/Big CRT"]

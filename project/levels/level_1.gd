@@ -1,6 +1,5 @@
 extends "res://levels/level.gd"
 
-
 var enemies_remaining = 0
 
 func _ready():

@@ -1,6 +1,5 @@
 extends "res://levels/level.gd"
 
-
 var beacons = 4
 
 func _ready():
@@ -21,4 +20,5 @@ func spawn_beacon():
 		$ParallaxBackground2/Beacons.text = "Beacons: %d/4" % (3-beacons)
 
 	else:
+		emit_signal("send_transmission")
 		Global.emit_signal("win")

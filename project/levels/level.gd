@@ -1,5 +1,6 @@
 extends Node
 
+signal send_transmission
 export(String, FILE, "*.tscn") var next_scene
 
 func _ready():
