@@ -1,21 +1,30 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://enemies/boss_enemy/boss_enemy.gd" type="Script" id=1]
+[ext_resource path="res://snacks/arrow.tscn" type="PackedScene" id=2]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 3, 3, 3 )
 
-[sub_resource type="CubeMesh" id=2]
-size = Vector3( 6, 6, 6 )
-
-[sub_resource type="SpatialMaterial" id=3]
-albedo_color = Color( 0.227451, 1, 0.203922, 1 )
-
 [sub_resource type="SphereMesh" id=4]
 
-[sub_resource type="SpatialMaterial" id=5]
-flags_unshaded = true
-albedo_color = Color( 1, 0, 0, 1 )
+[sub_resource type="SpatialMaterial" id=3]
+albedo_color = Color( 0.466667, 0.462745, 0.462745, 1 )
+metallic = 0.37
+metallic_specular = 0.0
+roughness = 0.26
+emission_enabled = true
+emission = Color( 0.101961, 0, 0.831373, 1 )
+emission_energy = 0.53
+emission_operator = 0
+emission_on_uv2 = false
+rim_enabled = true
+rim = 1.0
+rim_tint = 0.5
+ao_enabled = true
+ao_light_affect = 0.75
+ao_on_uv2 = false
+ao_texture_channel = 0
 
 [node name="BossEnemy" type="StaticBody" groups=[
 "baddies",
@@ -28,7 +37,8 @@ script = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
-mesh = SubResource( 2 )
+transform = Transform( 4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0 )
+mesh = SubResource( 4 )
 material/0 = SubResource( 3 )
 
 [node name="VisibilityNotifier" type="VisibilityNotifier" parent="."]
@@ -38,6 +48,11 @@ wait_time = 3.0
 autostart = true
 
 [node name="Arrow" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5 )
-mesh = SubResource( 4 )
-material/0 = SubResource( 5 )
+transform = Transform( 2.3, 0, 0, 0, 2.3, 0, 0, 0, 2.3, 0, 0, 5 )
+
+[node name="arrow" parent="Arrow" instance=ExtResource( 2 )]
+
+[node name="SpotLight" type="SpotLight" parent="."]
+transform = Transform( 0.866025, -5.96046e-08, 0.5, -0.433013, 0.5, 0.75, -0.25, -0.866025, 0.433013, 4, 10, 6 )
+spot_range = 49.0
+spot_angle = 69.3963

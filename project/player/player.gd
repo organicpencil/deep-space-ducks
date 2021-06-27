@@ -7,6 +7,7 @@ var health = 10
 var max_health = 10
 var energy = 0.0
 var max_energy = 10.0
+var turn_rotation_z = 0
 
 signal dead
 
@@ -130,5 +131,13 @@ func _physics_process(delta):
 	v += Input.get_action_strength("left") * 4.0
 	v -= Input.get_action_strength("right") * 4.0
 
+	if Input.is_action_pressed("left"):
+		turn_rotation_z = -30
+	elif Input.is_action_pressed("right"):
+		turn_rotation_z = 30
+	else:
+		turn_rotation_z = 0
+
 	angular_velocity = Vector3(0, v, 0) / boost
+	get_child(1).rotation_degrees = Vector3(rotation_degrees.x, -180, turn_rotation_z)
 	Global.emit_signal("player_energy_changed", energy, max_energy)

@@ -1,14 +1,10 @@
 extends Area
 
-
 func _ready():
 	connect("body_entered", self, "_body_entered")
 	
 	$VisibilityNotifier.connect("screen_entered", $Direction, "hide")
 	$VisibilityNotifier.connect("screen_exited", $Direction, "show")
-
-func _process(delta):
-	rotate_y(-0.025)
 
 func _body_entered(node):
 	if node.name == "Player":

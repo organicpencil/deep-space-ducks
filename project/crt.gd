@@ -8,6 +8,7 @@ export(NodePath) var dialog_player
 var current_dialog = 0
 var currently_playing = false
 var incoming_transmission = false
+var percent_text_visible = 0.0
 
 var preloaded_images = [preload("res://background/DeepSpaceDucks-01.png"),
 						preload("res://tv/Corg Dominion-01.png"),
@@ -52,6 +53,7 @@ func play_next_dialog():
 	if (incoming_transmission == false):
 		return
 	
+	percent_text_visible = 0.0
 	# Set Texture To Zordawn the Corg
 	screen_texture.set_texture(preloaded_images[1])
 	if (current_dialog < 5):
@@ -60,6 +62,20 @@ func play_next_dialog():
 		current_dialog += 1
 		incoming_transmission = false
 		dialog_player.play()
+		show_dialog()
+
+func show_dialog():
+	while(percent_text_visible != 1):
+		percent_text_visible += 0.015
+		yield(get_tree().create_timer(0.2), "timeout")
+		subtitles.set_percent_visible(percent_text_visible)
+	pass
+
+func pause_screen():
+	dialog_player.stop()
+
+func inser_tape(visuals, sounds):
+	pass
 
 func _on_Small_CRT_Button_pressed():
 	if (self.name == "Small CRT"):
