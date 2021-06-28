@@ -54,6 +54,7 @@ func play_next_dialog():
 		return
 	
 	percent_text_visible = 0.0
+  
 	# Set Texture To Zordawn the Corg
 	screen_texture.set_texture(preloaded_images[1])
 	if (current_dialog < 5):

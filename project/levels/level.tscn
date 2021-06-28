@@ -353,11 +353,11 @@ light_energy = 0.8
 [node name="Player" parent="." instance=ExtResource( 9 )]
 
 [connection signal="hide" from="ParallaxBackground2/Small CRT Button" to="ParallaxBackground2/Small CRT Button" method="_on_Small_CRT_Button_hide"]
-[connection signal="pressed" from="ParallaxBackground2/Small CRT Button" to="Camera/Big CRT" method="_on_Small_CRT_Button_pressed"]
 [connection signal="pressed" from="ParallaxBackground2/Small CRT Button" to="Camera/Small CRT" method="_on_Small_CRT_Button_pressed"]
+[connection signal="pressed" from="ParallaxBackground2/Small CRT Button" to="Camera/Big CRT" method="_on_Small_CRT_Button_pressed"]
 [connection signal="pressed" from="ParallaxBackground2/Small CRT Button" to="ParallaxBackground2/Small CRT Button" method="_on_Small_CRT_Button_pressed"]
-[connection signal="power_clicked" from="Camera/Big CRT/PowerButton/PowerButton" to="Camera/Big CRT" method="_on_PowerButton_power_clicked"]
 [connection signal="power_clicked" from="Camera/Big CRT/PowerButton/PowerButton" to="Camera/Small CRT" method="_on_PowerButton_power_clicked"]
+[connection signal="power_clicked" from="Camera/Big CRT/PowerButton/PowerButton" to="Camera/Big CRT" method="_on_PowerButton_power_clicked"]
 [connection signal="power_clicked" from="Camera/Big CRT/PowerButton/PowerButton" to="ParallaxBackground2/Small CRT Button" method="_on_PowerButton_power_clicked"]
 
 [editable path="Camera/Big CRT"]
