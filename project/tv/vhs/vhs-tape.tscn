@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://tv/vhs/vhs-tape.glb" type="PackedScene" id=1]
+[ext_resource path="res://tv/vhs/vhs-tape.gd" type="Script" id=2]
+
+[node name="vhs-tape" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="VHS Tape" parent="." index="0"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0 )

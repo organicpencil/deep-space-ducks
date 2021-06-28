@@ -1,3 +1,6 @@
 .import/
 export/
 export_presets.cfg
+
+# Mac Ignores
+.DS_Store

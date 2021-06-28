@@ -1,9 +1,40 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://levels/level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://levels/level_1.gd" type="Script" id=2]
 [ext_resource path="res://models/beacon/station599.tscn" type="PackedScene" id=3]
 [ext_resource path="res://pause_menu/pause_menu_small.tres" type="DynamicFont" id=4]
+[ext_resource path="res://models/beacon/station599.gd" type="Script" id=5]
+
+[sub_resource type="ViewportTexture" id=1]
+viewport_path = NodePath("Camera/Big CRT/Viewport")
+
+[sub_resource type="SpatialMaterial" id=2]
+resource_local_to_scene = true
+albedo_texture = SubResource( 1 )
+metallic = 0.1
+roughness = 0.2
+
+[sub_resource type="ViewportTexture" id=3]
+viewport_path = NodePath("Camera/Big CRT/Screen Buttons")
+
+[sub_resource type="ViewportTexture" id=4]
+viewport_path = NodePath("Camera/Big CRT/Screen Buttons")
+
+[sub_resource type="SpatialMaterial" id=5]
+resource_local_to_scene = true
+flags_transparent = true
+flags_unshaded = true
+flags_do_not_receive_shadows = true
+albedo_texture = SubResource( 3 )
+detail_enabled = true
+detail_blend_mode = 1
+detail_uv_layer = 0
+detail_albedo = SubResource( 4 )
+
+[sub_resource type="PlaneMesh" id=6]
+resource_local_to_scene = true
+material = SubResource( 5 )
 
 [sub_resource type="ViewportTexture" id=1]
 viewport_path = NodePath("Camera/Big CRT/Viewport")
@@ -63,7 +94,11 @@ material/0 = SubResource( 5 )
 
 [node name="station599" parent="." index="8" instance=ExtResource( 3 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -100, 0 )
+script = ExtResource( 5 )
 
 [connection signal="send_transmission" from="." to="Camera/Small CRT" method="_on_Level1_send_transmission"]
+[connection signal="power_clicked" from="Camera/Big CRT/PowerButton/PowerButton" to="Camera/Small CRT" method="_on_PowerButton_power_clicked"]
+[connection signal="power_clicked" from="Camera/Big CRT/PowerButton/PowerButton" to="ParallaxBackground2/Small CRT Button" method="_on_PowerButton_power_clicked"]
+[connection signal="power_clicked" from="Camera/Big CRT/PowerButton/PowerButton" to="Camera/Big CRT" method="_on_PowerButton_power_clicked"]
 
 [editable path="Camera/Big CRT"]
